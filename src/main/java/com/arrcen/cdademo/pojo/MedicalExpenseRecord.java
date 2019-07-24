@@ -1,12 +1,18 @@
 package com.arrcen.cdademo.pojo;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 
 /**
  * 医疗费用记录
  */
+@Entity
+@Table(name = "PUB01_医疗费用记录")
 public class MedicalExpenseRecord implements Serializable {
 
+	@Id
 	private String 系统序号;
 	private String 居民健康卡号;
 	private String 门急诊号;
@@ -15,6 +21,7 @@ public class MedicalExpenseRecord implements Serializable {
 	private String 门诊费用金额;
 	private String 住院费用金额;
 	private String 个人承担费用金额;
+	private String 医疗保险类别代码;
 
 
 	public String get系统序号() {
@@ -88,4 +95,11 @@ public class MedicalExpenseRecord implements Serializable {
 		this.个人承担费用金额 = 个人承担费用金额;
 	}
 
+	public String get医疗保险类别代码() {
+		return 医疗保险类别代码;
+	}
+
+	public void set医疗保险类别代码(String 医疗保险类别代码) {
+		this.医疗保险类别代码 = 医疗保险类别代码;
+	}
 }

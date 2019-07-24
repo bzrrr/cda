@@ -19,12 +19,12 @@ public class CDAtemplateController {
 	//	@RequestMapping(value = "/getTemplate", produces = {"application/xml;charset=UTF-8"})
 	@ApiOperation("通过模板序号查询CDA模板")
 	@GetMapping("/getTemplate/{index}")
-	public Template getTemplate(@PathVariable("index")String index) {
+	public Template getTemplate(@PathVariable("index") String index) {
 		Template template = new Template();
 		try {
-			String xml = templateService.getTemplate(index);
+			String json = templateService.getTemplate(index);
 			template.setStatus("1");
-			template.setContent(xml);
+			template.setContent(json);
 		} catch (Exception e) {
 			template.setStatus("-1");
 			template.setMessage("系统错误");
@@ -40,6 +40,20 @@ public class CDAtemplateController {
 			List<String> titles = templateService.getTitles();
 			template.setStatus("1");
 			template.setContens(titles);
+		} catch (Exception e) {
+			template.setStatus("-1");
+			template.setMessage("系统错误");
+		}
+		return template;
+	}
+
+	@GetMapping("/getXml/{index}")
+	public Template getXml(@PathVariable("index") String index) {
+		Template template = new Template();
+		try {
+			String xml = templateService.getXml(index, "A!");
+			template.setStatus("1");
+			template.setContent(xml);
 		} catch (Exception e) {
 			template.setStatus("-1");
 			template.setMessage("系统错误");

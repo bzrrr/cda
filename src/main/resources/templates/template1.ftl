@@ -5,10 +5,10 @@
     <realmCode code="CN"/>
     <typeId root="2.16.840.1.113883.1.3" extension="POCD_MT000040"/>
     <templateId root="2.16.156.10011.2.1.1.21"/>
-    <id root="2.16.156.10011.1.1" extension=""/>
+    <id root="2.16.156.10011.1.1" extension="${docInfo.docId!}"/>
     <code code="C0001" codeSystem="2.16.156.10011.2.4" codeSystemName="卫生信息共享文档规范编码体系"/>
     <title>病历概要</title>
-    <effectiveTime value=""/>
+    <effectiveTime value="${docInfo.effectiveTime!}"/>
     <confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25" codeSystemName="Confidentiality"
                          displayName="正常访问保密级别"/>
     <languageCode code="zh-CN"/>
@@ -73,7 +73,7 @@
             <!-- 建档机构 -->
             <representedOrganization>
                 <id root="2.16.156.10011.1.5" extension="${patient.建档医疗机构组织机构!}"/>
-                <name><#--${patient.medicalOrganization.organizationName!}--></name>
+                <name>${orgName!}</name>
             </representedOrganization>
         </assignedAuthor>
     </author>
@@ -81,8 +81,8 @@
     <custodian typeCode="CST">
         <assignedCustodian classCode="ASSIGNED">
             <representedCustodianOrganization classCode="ORG" determinerCode="INSTANCE">
-                <id root="2.16.156.10011.1.5" extension=""/>
-                <name></name>
+                <id root="2.16.156.10011.1.5" extension="${patient.建档医疗机构组织机构!}"/>
+                <name>${orgName!}</name>
             </representedCustodianOrganization>
         </assignedCustodian>
     </custodian>
@@ -134,7 +134,7 @@
                         <observation classCode="OBS" moodCode="EVN">
                             <code code="DE04.50.001.00"
                                   codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录"/>
-                            <value xsi:type="CD" code=""
+                            <value xsi:type="CD" code="${patientHealthDocInfo.ABO血型代码!}"
                                    codeSystem="2.16.156.10011.2.3.1.85" codeSystemName="ABO血型代码表" displayName=""/>
                         </observation>
                     </component>
@@ -143,7 +143,7 @@
                         <observation classCode="OBS" moodCode="EVN">
                             <code code="DE04.50.001.00"
                                   codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录"/>
-                            <value xsi:type="CD" code=""
+                            <value xsi:type="CD" code="${patientHealthDocInfo.RH血型代码!}"
                                    codeSystem="2.16.156.10011.2.3.1.250" codeSystemName="rH血型代码表" displayName=""/>
                         </observation>
                     </component>
@@ -163,7 +163,7 @@
                 <observation classCode="OBS" moodCode="EVN">
                     <code code="DE02.10.026.00" displayName="疾病史(含外伤)"
                           codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录"/>
-                    <value xsi:type="ST">疾病史(含外伤)描述</value>
+                    <value xsi:type="ST">${patientHealthDocInfo.疾病史!}</value>
                 </observation>
             </entry>
             <!-- 传染病史 -->
@@ -171,7 +171,7 @@
                 <observation classCode="OBS" moodCode="EVN">
                     <code code="DE02.10.008.00" displayName="传染病史"
                           codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录"/>
-                    <value xsi:type="ST">描述</value>
+                    <value xsi:type="ST">${patientHealthDocInfo.传染病史!}</value>
                 </observation>
             </entry>
             <!-- 手术史 -->
@@ -179,7 +179,7 @@
                 <observation classCode="OBS" moodCode="EVN">
                     <code code="DE02.10.061.00" displayName="手术史"
                           codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录"/>
-                    <value xsi:type="ST">描述</value>
+                    <value xsi:type="ST">${patientHealthDocInfo.手术史!}</value>
                 </observation>
             </entry>
             <!-- 婚育史 -->
@@ -187,7 +187,7 @@
                 <observation classCode="OBS" moodCode="EVN">
                     <code code="DE02.10.098.00" displayName="婚育史"
                           codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录"/>
-                    <value xsi:type="ST">描述</value>
+                    <value xsi:type="ST">${patientHealthDocInfo.婚育史!}</value>
                 </observation>
             </entry>
         </section>
@@ -204,7 +204,7 @@
                 <observation classCode="OBS" moodCode="EVN">
                     <code code="DE02.10.100.00" displayName="输血史"
                           codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录"/>
-                    <value xsi:type="ST">描述</value>
+                    <value xsi:type="ST">${patientHealthDocInfo.输血史!}</value>
                 </observation>
             </entry>
         </section>
@@ -221,7 +221,7 @@
                 <observation classCode="OBS" moodCode="EVN">
                     <code code="DE02.10.022.00" displayName="过敏史"
                           codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录"/>
-                    <value xsi:type="ST">描述</value>
+                    <value xsi:type="ST">${patientHealthDocInfo.过敏史!}</value>
                 </observation>
             </entry>
         </section>
@@ -238,7 +238,7 @@
                 <observation classCode="OBS" moodCode="EVN">
                     <code code="DE02.10.022.00" displayName="预防接种史"
                           codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录"/>
-                    <value xsi:type="ST">描述</value>
+                    <value xsi:type="ST">${patientHealthDocInfo.预防接种史!}</value>
                 </observation>
             </entry>
         </section>
@@ -255,13 +255,13 @@
                 <observation classCode="OBS" moodCode="EVN">
                     <code code="DE02.10.097.00" displayName="个人史"
                           codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录"/>
-                    <value xsi:type="ST">描述</value>
+                    <value xsi:type="ST">${patientHealthDocInfo.个人史!}</value>
                 </observation>
             </entry>
         </section>
     </component>
 
-    <#if (patient.genderCode?? && patient.genderCode == "2")>
+    <#if (!patient.genderCode?? || patient.genderCode == "2")>
         <!-- 月经史章节 -->
         <component>
             <section>
@@ -273,7 +273,7 @@
                     <observation classCode="OBS" moodCode="EVN">
                         <code code="DE02.10.102.00" displayName="月经史"
                               codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录"/>
-                        <value xsi:type="ST">描述</value>
+                        <value xsi:type="ST">${patientHealthDocInfo.月经史!}</value>
                     </observation>
                 </entry>
             </section>
@@ -291,7 +291,7 @@
                 <observation classCode="OBS" moodCode="EVN">
                     <code code="DE02.10.103.00" displayName="家族史"
                           codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录"/>
-                    <value xsi:type="ST">描述</value>
+                    <value xsi:type="ST">${patientHealthDocInfo.家族史!}</value>
                 </observation>
             </entry>
         </section>
@@ -307,7 +307,7 @@
                 <observation classCode="OBS" moodCode="EVN">
                     <code code="DE08.10.026.00" displayName="医疗机构科室名称"
                           codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录"/>
-                    <value xsi:type="ST">名称</value>
+                    <value xsi:type="ST">${healthIncidentInfo.医疗机构科室名称!}</value>
                 </observation>
             </entry>
 
@@ -315,7 +315,7 @@
                 <observation classCode="OBS" moodCode="EVN">
                     <code code="DE02.01.060.00" displayName="患者类型代码"
                           codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录"/>
-                    <value xsi:type="CD" code="" codeSystem="2.16.156.10011.2.3.1.271"
+                    <value xsi:type="CD" code="${healthIncidentInfo.患者类型代码!}" codeSystem="2.16.156.10011.2.3.1.271"
                            codeSystemName="患者类型代码表"></value>
                 </observation>
             </entry>
@@ -324,7 +324,7 @@
                 <observation classCode="OBS" moodCode="EVN">
                     <code code="DE01.00.010.00" displayName="门(急)诊号"
                           codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录"/>
-                    <value xsi:type="ST">门(急)诊号</value>
+                    <value xsi:type="ST">${healthIncidentInfo.门急诊号!}</value>
                 </observation>
             </entry>
 
@@ -332,7 +332,7 @@
                 <observation classCode="OBS" moodCode="EVN">
                     <code code="DE01.00.014.00" displayName="住院号"
                           codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录"/>
-                    <value xsi:type="ST">住院号</value>
+                    <value xsi:type="ST">${healthIncidentInfo.住院号!}</value>
                 </observation>
             </entry>
 
@@ -343,14 +343,14 @@
                         <observation classCode="OBS" moodCode="EVN">
                             <code code="DE06.00.092.00" displayName="入院日期时间"
                                   codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录"/>
-                            <value xsi:type="TS" value=""></value>
+                            <value xsi:type="TS" value="${healthIncidentInfo.入院日期时间!}"></value>
                         </observation>
                     </component>
                     <component>
                         <observation classCode="OBS" moodCode="EVN">
                             <code code="DE06.00.017.00" displayName="出院日期时间"
                                   codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录"/>
-                            <value xsi:type="TS" value=""></value>
+                            <value xsi:type="TS" value="${healthIncidentInfo.出院日期时间!}"></value>
                         </observation>
                     </component>
                 </organizer>
@@ -360,7 +360,7 @@
                 <observation classCode="OBS" moodCode="EVN">
                     <code code="DE04.01.018.00" displayName="发病日期时间"
                           codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录"/>
-                    <value xsi:type="TS" value=""></value>
+                    <value xsi:type="TS" value="${healthIncidentInfo.发病日期时间!}"></value>
                 </observation>
             </entry>
 
@@ -369,8 +369,8 @@
                     <code code="DE05.10.053.00" displayName="就诊原因"
                           codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录"/>
                     <!-- 就诊日期时间 -->
-                    <effectiveTime value=""/>
-                    <value xsi:type="ST">就诊原因描述</value>
+                    <effectiveTime value="${healthIncidentInfo.就诊日期时间!}"/>
+                    <value xsi:type="ST">${healthIncidentInfo.就诊原因!}</value>
                 </observation>
             </entry>
 
@@ -383,13 +383,13 @@
                             <name displayName="西医诊断编码"></name>
                         </qualifier>
                     </code>
-                    <value xsi:type="CD" code="" codeSystem="2.16.156.10011.2.3.3.11.1"
+                    <value xsi:type="CD" code="${healthIncidentInfo.西医诊断编码!}" codeSystem="2.16.156.10011.2.3.3.11.1"
                            codeSystemName="诊断代码表(ICD-10)" displayName=""/>
                     <entryRelationship typeCode="COMP">
                         <observation classCode="OBS" moodCode="EVN">
                             <code code="DE05.10.113.00" displayName="病情转归代码"
                                   codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录"/>
-                            <value xsi:type="CD" code="" codeSystem="2.16.156.10011.2.3.1.148"
+                            <value xsi:type="CD" code="${healthIncidentInfo.病情转归代码!}" codeSystem="2.16.156.10011.2.3.1.148"
                                    codeSystemName="病情转归代码表" displayName=""/>
                         </observation>
                     </entryRelationship>
@@ -405,7 +405,7 @@
                             <name displayName="西医诊断编码"></name>
                         </qualifier>
                     </code>
-                    <value xsi:type="CD" code="" codeSystem="2.16.156.10011.2.3.3.11.1"
+                    <value xsi:type="CD" code="${healthIncidentInfo.其他西医诊断编码!}" codeSystem="2.16.156.10011.2.3.3.11.1"
                            codeSystemName="诊断代码表(ICD-10)" displayName=""/>
                 </observation>
             </entry>
@@ -419,7 +419,7 @@
                             <name displayName="中医病名代码"></name>
                         </qualifier>
                     </code>
-                    <value xsi:type="CD" code="" codeSystem="2.16.156.10011.2.3.3.14"
+                    <value xsi:type="CD" code="${healthIncidentInfo.中医病名代码!}" codeSystem="2.16.156.10011.2.3.3.14"
                            codeSystemName="中医病症分类与代码表(GB/T 15657)" displayName=""/>
                     <entryRelationship typeCode="COMP">
                         <observation classCode="OBS" moodCode="EVN">
@@ -428,7 +428,7 @@
                             <qualifier>
                                 <name displayName="中医证候代码"></name>
                             </qualifier>
-                            <value xsi:type="CD" code="" codeSystem="2.16.156.10011.2.3.3.14"
+                            <value xsi:type="CD" code="${healthIncidentInfo.中医证候代码!}" codeSystem="2.16.156.10011.2.3.3.14"
                                    codeSystemName="中医病症分类与代码表(GB/T 15657)" displayName=""/>
                         </observation>
                     </entryRelationship>
@@ -437,7 +437,7 @@
                         <observation classCode="OBS" moodCode="EVN">
                             <code code="DE05.10.113.00" displayName="病情转归代码"
                                   codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录"/>
-                            <value xsi:type="CD" code="" codeSystem="2.16.156.10011.2.3.1.148"
+                            <value xsi:type="CD" code="${healthIncidentInfo.病情转归代码!}" codeSystem="2.16.156.10011.2.3.1.148"
                                    codeSystemName="病情转归代码表" displayName=""/>
                         </observation>
                     </entryRelationship>
@@ -447,7 +447,7 @@
             <entry>
                 <procedure classCode="PROC" moodCode="EVN">
                     <!-- 手术及操作编码 DE06.00.093.00 -->
-                    <code code="" codeSystem="2.16.156.10011.2.3.3.12"
+                    <code code="${healthIncidentInfo.手术及操作编码!}" codeSystem="2.16.156.10011.2.3.3.12"
                           codeSystemName="手术(操作)代码表(ICD-9-CM)"/>
                 </procedure>
             </entry>
@@ -456,26 +456,26 @@
                 <observation classCode="OBS" moodCode="EVN">
                     <code code="DE08.50.022.00" displayName="关键药物名称"
                           codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录"/>
-                    <value xsi:type="ST">关键药物名称</value>
+                    <value xsi:type="ST">${healthIncidentInfo.关键药物名称!}</value>
                     <entryRelationship typeCode="COMP">
                         <observation classCode="OBS" moodCode="EVN">
                             <code code="DE06.00.136.00" displayName="关键药物用法"
                                   codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录"/>
-                            <value xsi:type="ST">关键药物用法</value>
+                            <value xsi:type="ST">${healthIncidentInfo.关键药物用法!}</value>
                         </observation>
                     </entryRelationship>
                     <entryRelationship typeCode="COMP">
                         <observation classCode="OBS" moodCode="EVN">
                             <code code="DE06.00.129.00" displayName="药物不良反应情况"
                                   codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录"/>
-                            <value xsi:type="ST">药物不良反应情况记录</value>
+                            <value xsi:type="ST">${healthIncidentInfo.药物不良反应情况!}</value>
                         </observation>
                     </entryRelationship>
                     <entryRelationship typeCode="COMP">
                         <obervation classCode="OBS" moodCode="EVN">
                             <code code="DE06.00.164.00" displayName="中药使用类别代码"
                                   codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录"/>
-                            <value xsi:type="CD" code="" codeSystem="2.16.156.10011.2.3.1.157"
+                            <value xsi:type="CD" code="${healthIncidentInfo.中药使用类别代码!}" codeSystem="2.16.156.10011.2.3.1.157"
                                    codeSystemName="中药使用类别代码"></value>
                         </obervation>
                     </entryRelationship>
@@ -486,7 +486,7 @@
                 <observation classCode="OBS" moodCode="EVN">
                     <code code="DE06.00.251.00" displayName="其他医学处置"
                           codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录"/>
-                    <value xsi:type="ST">其他医学处置</value>
+                    <value xsi:type="ST">${healthIncidentInfo.其他医学处置!}</value>
                 </observation>
             </entry>
 
@@ -494,7 +494,7 @@
                 <observation classCode="OBS" moodCode="EVN">
                     <code code="DE05.01.021.00" displayName="根本死因代码"
                           codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录"/>
-                    <value xsi:type="CD" code=""
+                    <value xsi:type="CD" code="${healthIncidentInfo.根本死因代码!}"
                            codeSystem="2.16.156.10011.2.3.3.11.2" codeSystemName="死因代码表(ICD-10)"></value>
                 </observation>
             </entry>
@@ -503,7 +503,7 @@
                 <observation classCode="OBS" moodCode="EVN">
                     <code code="DE02.01.039.00" displayName="责任医师姓名"
                           codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录"/>
-                    <value xsi:type="ST">责任医师姓名</value>
+                    <value xsi:type="ST">${healthIncidentInfo.责任医师姓名!}</value>
                 </observation>
             </entry>
 
@@ -515,7 +515,7 @@
                         <observation classCode="OBS" moodCode="EVN">
                             <code code="DE02.01.044.00" displayName="医疗保险类别代码"
                                   codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录"/>
-                            <value xsi:type="CD" code="" displayName=""
+                            <value xsi:type="CD" code="${medicalExpenseRecord.医疗保险类别代码!}" displayName=""
                                    codeSystem="2.16.156.10011.2.3.1.248" codeSystemName="医疗保险类别代码表"></value>
                         </observation>
                     </component>
@@ -524,7 +524,7 @@
                         <observation classCode="OBS" moodCode="EVN">
                             <code code="DE07.00.007.00" displayName="医疗付费方式代码"
                                   codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录"/>
-                            <value xsi:type="CD" code="" displayName=""
+                            <value xsi:type="CD" code="${medicalExpenseRecord.医疗付费方式代码!}" displayName=""
                                    codeSystem="2.16.156.10011.2.3.1.248" codeSystemName="医疗付费方式代码表"></value>
                         </observation>
                     </component>
@@ -533,7 +533,7 @@
                         <observation classCode="OBS" moodCode="EVN">
                             <code code="DE07.00.004.00" displayName="门诊费用金额"
                                   codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录"/>
-                            <value xsi:type="MO" value="" currency="元"></value>
+                            <value xsi:type="MO" value="${medicalExpenseRecord.门诊费用金额!}" currency="元"></value>
                         </observation>
                     </component>
 
@@ -541,7 +541,7 @@
                         <observation classCode="OBS" moodCode="EVN">
                             <code code="DE07.00.010.00" displayName="住院费用金额"
                                   codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录"/>
-                            <value xsi:type="MO" value="" currency="元"></value>
+                            <value xsi:type="MO" value="${medicalExpenseRecord.住院费用金额!}" currency="元"></value>
                         </observation>
                     </component>
 
@@ -549,7 +549,7 @@
                         <observation classCode="OBS" moodCode="EVN">
                             <code code="DE07.00.001.00" displayName="个人承担费用金额"
                                   codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录"/>
-                            <value xsi:type="MO" value="" currency="元"></value>
+                            <value xsi:type="MO" value="${medicalExpenseRecord.个人承担费用金额!}" currency="元"></value>
                         </observation>
                     </component>
                 </organizer>

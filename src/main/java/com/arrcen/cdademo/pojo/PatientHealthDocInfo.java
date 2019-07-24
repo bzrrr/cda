@@ -1,12 +1,18 @@
 package com.arrcen.cdademo.pojo;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 
 /**
  * 患者健康档案信息
  */
+@Entity
+@Table(name = "PUB01_患者健康档案信息")
 public class PatientHealthDocInfo implements Serializable{
 
+  @Id
   private String 系统序号;
   private String 居民健康卡号;
   private String ABO血型代码;

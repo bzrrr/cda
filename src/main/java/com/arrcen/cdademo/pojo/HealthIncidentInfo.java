@@ -1,12 +1,18 @@
 package com.arrcen.cdademo.pojo;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serializable;
 
 /**
  * 卫生事件摘要记录
  */
+@Entity
+@Table(name = "PUB01_卫生事件摘要信息")
 public class HealthIncidentInfo implements Serializable {
 
+	@Id
 	private String 系统序号;
 	private String 居民健康卡号;
 	private String 医疗机构组织机构代码;
