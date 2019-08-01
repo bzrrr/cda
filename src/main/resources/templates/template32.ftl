@@ -118,7 +118,7 @@
         <assignedAuthor classCode="ASSIGNED">
             <id root="2.16.156.10011.1.7" extension=""/>
             <assignedPerson>
-                <name>xx</name>
+                <name></name>
             </assignedPerson>
         </assignedAuthor>
     </author>
@@ -127,7 +127,7 @@
         <assignedCustodian classCode="ASSIGNED">
             <representedCustodianOrganization classCode="ORG" determinerCode="INSTANCE">
                 <id root="2.16.156.10011.1.5" extension=""/>
-                <name>xx医院</name>
+                <name></name>
             </representedCustodianOrganization>
         </assignedCustodian>
     </custodian>
@@ -737,7 +737,7 @@
                                            codeSystemName="麻醉方法代码表"/>
                                     <performer>
                                         <assignedEntity>
-                                            <id root="2.16.156.10011.1.4" extension/>
+                                            <id root="2.16.156.10011.1.4" extension=""/>
                                             <assignedPerson>
                                                 <name></name>
                                             </assignedPerson>

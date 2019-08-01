@@ -146,6 +146,7 @@
                         </serviceProviderOrganization>
                     </healthCareFacility>
                 </location>
+            </effectiveTime>
         </encompassingEncounter>
     </componentOf>
 
@@ -313,7 +314,7 @@
                     <code code="48765-2" displayName="Allergies,adverse reactions,alerts"
                           codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
                     <text/>
-                    <entry
+                    <entry>
                     <observation classCode="OBS" moodCode="EVN">
                         <code code="DE04.01.118.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录"
                               displayName="过敏史"/>

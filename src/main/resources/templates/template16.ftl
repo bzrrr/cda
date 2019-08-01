@@ -29,6 +29,7 @@
                 <name></name>
                 <age value="" unit="岁"/>
             </patient>
+        </patientRole>
     </recordTarget>
 
     <author typeCode="AUT" contextControlCode="OP">

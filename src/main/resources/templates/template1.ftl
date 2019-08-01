@@ -5,10 +5,10 @@
     <realmCode code="CN"/>
     <typeId root="2.16.840.1.113883.1.3" extension="POCD_MT000040"/>
     <templateId root="2.16.156.10011.2.1.1.21"/>
-    <id root="2.16.156.10011.1.1" extension="${docInfo.docId!}"/>
+    <id root="2.16.156.10011.1.1" extension="${docInfo.docId!'文档流水号标识'}"/>
     <code code="C0001" codeSystem="2.16.156.10011.2.4" codeSystemName="卫生信息共享文档规范编码体系"/>
     <title>病历概要</title>
-    <effectiveTime value="${docInfo.effectiveTime!}"/>
+    <effectiveTime value="${docInfo.effectiveTime!'文档机器生成时间'}"/>
     <confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25" codeSystemName="Confidentiality"
                          displayName="正常访问保密级别"/>
     <languageCode code="zh-CN"/>
@@ -17,45 +17,45 @@
     <recordTarget typeCode="RCT" contextControlCode="OP">
         <patientRole classCode="PAT">
             <!-- 健康档案标识号 -->
-            <id root="2.16.156.10011.1.2" extension="${patient.城乡居民健康档案编号!}"/>
+            <id root="2.16.156.10011.1.2" extension="${patient.城乡居民健康档案编号!'城乡居民健康档案编号'}"/>
             <!-- 健康卡号 -->
-            <id root="2.16.156.10011.1.19" extension="${patient.居民健康卡号!}"/>
+            <id root="2.16.156.10011.1.19" extension="${patient.居民健康卡号!'居民健康卡号'}"/>
             <addr use="H">
-                <houseNumber>${patient.地址_门牌号码!}</houseNumber>
-                <streetName>${patient.地址_村!}</streetName>
-                <township>${patient.地址_乡!}</township>
-                <county>${patient.地址_县!}</county>
-                <city>${patient.地址_市!}</city>
-                <state>${patient.地址_省!}</state>
-                <postalCode>${patient.邮政编码!}</postalCode>
+                <houseNumber>${patient.地址_门牌号码!'地址_门牌号码'}</houseNumber>
+                <streetName>${patient.地址_村!'地址_村'}</streetName>
+                <township>${patient.地址_乡!'地址_乡'}</township>
+                <county>${patient.地址_县!'地址_县'}</county>
+                <city>${patient.地址_市!'地址_市'}</city>
+                <state>${patient.地址_省!'地址_省'}</state>
+                <postalCode>${patient.邮政编码!'邮政编码'}</postalCode>
             </addr>
             <!-- 患者电话 -->
-            <telecom value="${patient.患者电话号码!}"/>
+            <telecom value="${patient.患者电话号码!'患者电话号码'}"/>
             <patient classCode="PSN" determinerCode="INSTANCE">
                 <!-- 患者身份证号标识 -->
-                <id root="2.16.156.10011.1.3" extension="${patient.患者身份证件号码!}"/>
+                <id root="2.16.156.10011.1.3" extension="${patient.患者身份证件号码!'患者身份证件号码'}"/>
                 <!-- 患者姓名 -->
-                <name>${patient.患者姓名!}</name>
+                <name>${patient.患者姓名!'患者姓名'}</name>
                 <!-- 性别代码 -->
-                <administrativeGenderCode code="${patient.性别代码!}" codeSystem="2.16.156.10011.2.3.3.4"
-                                          codeSystemName="生理性别代码表(GB/T 2261.1)"/>
+                <administrativeGenderCode code="${patient.性别代码!'性别代码'}" codeSystem="2.16.156.10011.2.3.3.4"
+                                          codeSystemName="生理性别代码表(GB/T 2261.1)" displayName="${patient.性别!'性别'}"/>
                 <birthTime value="${patient.出生日期!}"/>
                 <!-- 婚姻状况代码 -->
-                <maritalStatusCode code="${patient.婚姻状况代码!}" displayName="${patient.maritalStatusName!}"
-                                   codeSystem="2.16.156.10011.2.3.3.5" codeSystemName=""/>
+                <maritalStatusCode code="${patient.婚姻状况代码!'婚姻状况代码'}" displayName="${patient.婚姻状况!'婚姻状况'}"
+                                   codeSystem="2.16.156.10011.2.3.3.5" codeSystemName="婚姻状况代码表(GB/T 2261.2)"/>
                 <!-- 民族 -->
-                <ethnicGroupCode code="${patient.民族!}" displayName="${patient.ethnicGroupName!}"
+                <ethnicGroupCode code="${patient.民族!'民族'}" displayName="${patient.民族名称!'民族名称'}"
                                  codeSystem="2.16.156.10011.2.3.3.3" codeSystemName="民族类别代码表(GB 3304)"/>
                 <!-- 工作单位 -->
                 <employerOrganization>
-                    <name>${patient.工作单位名称!}</name>
-                    <telecom value="${patient.工作单位电话号码!}"></telecom>
+                    <name>${patient.工作单位名称!'工作单位名称'}</name>
+                    <telecom value="${patient.工作单位电话号码!'工作单位电话号码'}"></telecom>
                 </employerOrganization>
                 <!-- 职业状况 -->
                 <occupation>
-                    <occupationCode code="${patient.职业类别代码!}" codeSystem="2.16.156.10011.2.3.3.13"
+                    <occupationCode code="${patient.职业类别代码!'职业类别代码'}" codeSystem="2.16.156.10011.2.3.3.13"
                                     codeSystemName="从业状况(个人身体)代码表(GB/T 2261.4)"
-                                    displayName="${patient.occupationName!}"/>
+                                    displayName="${patient.职业类别!'职业类别'}"/>
                 </occupation>
             </patient>
         </patientRole>
@@ -63,17 +63,17 @@
     <!-- 创建者 -->
     <author typeCode="AUT" contextControlCode="OP">
         <!-- 建档日期 -->
-        <time value="${patient.建档日期时间!}"/>
+        <time value="${patient.建档日期时间!'建档日期时间'}"/>
         <assignedAuthor classCode="ASSIGNED">
-            <id root="2.16.156.10011.1.7" extension=""/>
+            <id root="2.16.156.10011.1.7" extension="${patient.建档者序号!'建档者唯一标识符'}"/>
             <!-- 建档者姓名 -->
             <assignedPerson>
-                <name>${patient.建档者姓名!}</name>
+                <name>${patient.建档者姓名!'建档者姓名'}</name>
             </assignedPerson>
             <!-- 建档机构 -->
             <representedOrganization>
-                <id root="2.16.156.10011.1.5" extension="${patient.建档医疗机构组织机构!}"/>
-                <name>${orgName!}</name>
+                <id root="2.16.156.10011.1.5" extension="${patient.建档医疗机构组织机构!'建档医疗机构组织机构标识'}"/>
+                <name>${orgName!'医疗机构名称'}</name>
             </representedOrganization>
         </assignedAuthor>
     </author>
@@ -81,8 +81,8 @@
     <custodian typeCode="CST">
         <assignedCustodian classCode="ASSIGNED">
             <representedCustodianOrganization classCode="ORG" determinerCode="INSTANCE">
-                <id root="2.16.156.10011.1.5" extension="${patient.建档医疗机构组织机构!}"/>
-                <name>${orgName!}</name>
+                <id root="2.16.156.10011.1.5" extension="${patient.建档医疗机构组织机构!'文档保管的医疗机构标识'}"/>
+                <name>${orgName!'保管机构名称'}</name>
             </representedCustodianOrganization>
         </assignedCustodian>
     </custodian>
@@ -103,11 +103,11 @@
                 <postalCode></postalCode>
             </addr>
             <!-- 电话号码 -->
-            <telecom use="H" value="${patient.联系人电话号码!}"/>
+            <telecom use="H" value="${patient.联系人电话号码!'联系人电话号码'}"/>
             <!-- 联系人 -->
             <associatedPerson classCode="PSN" determinerCode="INSTANCE">
                 <!-- 姓名 -->
-                <name>${patient.联系人姓名!}</name>
+                <name>${patient.联系人姓名!'联系人姓名'}</name>
             </associatedPerson>
         </associatedEntity>
     </participant>
@@ -261,24 +261,22 @@
         </section>
     </component>
 
-    <#if (!patient.genderCode?? || patient.genderCode == "2")>
-        <!-- 月经史章节 -->
-        <component>
-            <section>
-                <code code="49033-4" displayName="Menstrual History"
-                      codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
-                <text/>
-                <!-- 月经史 -->
-                <entry>
-                    <observation classCode="OBS" moodCode="EVN">
-                        <code code="DE02.10.102.00" displayName="月经史"
-                              codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录"/>
-                        <value xsi:type="ST">${patientHealthDocInfo.月经史!}</value>
-                    </observation>
-                </entry>
-            </section>
-        </component>
-    </#if>
+    <!-- 月经史章节 -->
+    <component>
+        <section>
+            <code code="49033-4" displayName="Menstrual History"
+                  codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
+            <text/>
+            <!-- 月经史 -->
+            <entry>
+                <observation classCode="OBS" moodCode="EVN">
+                    <code code="DE02.10.102.00" displayName="月经史"
+                          codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录"/>
+                    <value xsi:type="ST">${patientHealthDocInfo.月经史!}</value>
+                </observation>
+            </entry>
+        </section>
+    </component>
 
     <!-- 家族史章节 -->
     <component>
@@ -389,7 +387,8 @@
                         <observation classCode="OBS" moodCode="EVN">
                             <code code="DE05.10.113.00" displayName="病情转归代码"
                                   codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录"/>
-                            <value xsi:type="CD" code="${healthIncidentInfo.病情转归代码!}" codeSystem="2.16.156.10011.2.3.1.148"
+                            <value xsi:type="CD" code="${healthIncidentInfo.病情转归代码!}"
+                                   codeSystem="2.16.156.10011.2.3.1.148"
                                    codeSystemName="病情转归代码表" displayName=""/>
                         </observation>
                     </entryRelationship>
@@ -428,7 +427,8 @@
                             <qualifier>
                                 <name displayName="中医证候代码"></name>
                             </qualifier>
-                            <value xsi:type="CD" code="${healthIncidentInfo.中医证候代码!}" codeSystem="2.16.156.10011.2.3.3.14"
+                            <value xsi:type="CD" code="${healthIncidentInfo.中医证候代码!}"
+                                   codeSystem="2.16.156.10011.2.3.3.14"
                                    codeSystemName="中医病症分类与代码表(GB/T 15657)" displayName=""/>
                         </observation>
                     </entryRelationship>
@@ -437,7 +437,8 @@
                         <observation classCode="OBS" moodCode="EVN">
                             <code code="DE05.10.113.00" displayName="病情转归代码"
                                   codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录"/>
-                            <value xsi:type="CD" code="${healthIncidentInfo.病情转归代码!}" codeSystem="2.16.156.10011.2.3.1.148"
+                            <value xsi:type="CD" code="${healthIncidentInfo.病情转归代码!}"
+                                   codeSystem="2.16.156.10011.2.3.1.148"
                                    codeSystemName="病情转归代码表" displayName=""/>
                         </observation>
                     </entryRelationship>
@@ -475,7 +476,8 @@
                         <obervation classCode="OBS" moodCode="EVN">
                             <code code="DE06.00.164.00" displayName="中药使用类别代码"
                                   codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录"/>
-                            <value xsi:type="CD" code="${healthIncidentInfo.中药使用类别代码!}" codeSystem="2.16.156.10011.2.3.1.157"
+                            <value xsi:type="CD" code="${healthIncidentInfo.中药使用类别代码!}"
+                                   codeSystem="2.16.156.10011.2.3.1.157"
                                    codeSystemName="中药使用类别代码"></value>
                         </obervation>
                     </entryRelationship>

@@ -7,11 +7,11 @@
     <typeId root="2.16.840.1.113883.1.3" extension="POCD_MT000040"/>
     <templateId root="2.16.156.10011.2.1.1.54"/>
     <!-- 文档流水号 -->
-    <id root="2.16.156.10011.1.1" extension=""/>
+    <id root="2.16.156.10011.1.1" extension="${docInfo.docId!'文档流水号标识'}"/>
     <code code="C0034" codeSystem="2.16.156.10011.2.4" codeSystemName="卫生信息共享文档规范编码体系"/>
     <title>入院记录</title>
     <!-- 文档机器生成时间 -->
-    <effectiveTime value=""/>
+    <effectiveTime value="${docInfo.effectiveTime!'文档机器生成时间'}"/>
     <confidentialityCode code="N" codeSystem="2.16.840.1.113883.5.25" codeSystemName="Confidentiality"
                          displayName="正常访问保密级别"/>
     <languageCode code="zh-CN"/>

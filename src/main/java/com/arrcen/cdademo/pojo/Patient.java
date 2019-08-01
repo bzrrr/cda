@@ -1,8 +1,10 @@
 package com.arrcen.cdademo.pojo;
 
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.io.Serializable;
 
 /**
@@ -22,9 +24,17 @@ public class Patient implements Serializable{
 	private String 患者姓名;
 	private String 出生日期;
 	private String 性别代码;
+	@Transient
+	private String 性别;
 	private String 婚姻状况代码;
+	@Transient
+	private String 婚姻状况;
 	private String 民族;
+	@Transient
+	private String 民族名称;
 	private String 职业类别代码;
+	@Transient
+	private String 职业类别;
 	private String 工作单位名称;
 	private String 工作单位电话号码;
 	private String 地址类别代码;
@@ -41,7 +51,47 @@ public class Patient implements Serializable{
 	private String 建档日期时间;
 	private String 建档医疗机构组织机构;
 	private String 建档者姓名;
+	private String 建档者序号;
 
+	public String get建档者序号() {
+		return 建档者序号;
+	}
+
+	public void set建档者序号(String 建档者序号) {
+		this.建档者序号 = 建档者序号;
+	}
+
+	public String get职业类别() {
+		return 职业类别;
+	}
+
+	public void set职业类别(String 职业类别) {
+		this.职业类别 = 职业类别;
+	}
+
+	public String get性别() {
+		return 性别;
+	}
+
+	public void set性别(String 性别) {
+		this.性别 = 性别;
+	}
+
+	public String get民族名称() {
+		return 民族名称;
+	}
+
+	public void set民族名称(String 民族名称) {
+		this.民族名称 = 民族名称;
+	}
+
+	public String get婚姻状况() {
+		return 婚姻状况;
+	}
+
+	public void set婚姻状况(String 婚姻状况) {
+		this.婚姻状况 = 婚姻状况;
+	}
 
 	public String get系统序号() {
 		return 系统序号;

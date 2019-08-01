@@ -116,6 +116,7 @@
                         </serviceProviderOrganization>
                     </healthCareFacility>
                 </location>
+            </effectiveTime>
         </encompassingEncounter>
     </componentOf>
 

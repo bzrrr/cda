@@ -170,7 +170,7 @@
                             <code code="DE05.01.024.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录"
                                   displayName="入院诊断编码"/>
                             <value xsi:type="CD" code="K56.700" codeSystem="2.16.156.10011.2.3.3.11.3" displayName=""
-                                   codeSystemName=诊断编码表(ICD-10)></value>
+                                   codeSystemName="诊断编码表(ICD-10)"></value>
                         </observation>
                     </entry>
                     <entry>

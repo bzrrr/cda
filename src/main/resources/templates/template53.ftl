@@ -274,7 +274,7 @@
                     <!-- 出院情况 -->
                     <entry typeCode="COMP">
                         <observation classCode="OBS" moodCode="EVN">
-                            <code code="DE06.00.193.00 displayName=" 出院情况" codeSystem="2.16.156.10011.2.2.1"
+                            <code code="DE06.00.193.00" displayName=" 出院情况" codeSystem="2.16.156.10011.2.2.1"
                             codeSystemName="卫生信息数据元目录"/>
                             <value xsi:type="ST"></value>
                         </observation>

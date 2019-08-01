@@ -187,7 +187,7 @@
             <!-- 入院诊断 -->
             <component>
                 <section>
-                    <code code="46241-6 displayName=" HOSPITAL ADMISSION DX" codeSystem="2.16.840.1.113883.6.1"
+                    <code code="46241-6" displayName="HOSPITAL ADMISSION DX" codeSystem="2.16.840.1.113883.6.1"
                     codeSystemName="LOINC"/>
                     <text/>
                     <entry>
