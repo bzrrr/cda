@@ -17,7 +17,7 @@ public interface OIDmanagementService {
 	 * @param properties 排序字段
 	 * @return
 	 */
-	Map<String, Object> getPage(int page, int size, String order, String properties, String systemId, String oidName);
+	Map<String, Object> getPage(int page, int size, String order, String properties, String systemId, String oidName, String mappedCode, String oid);
 
 	void updateOID(OIDassignmentTable oiDassignmentTable);
 

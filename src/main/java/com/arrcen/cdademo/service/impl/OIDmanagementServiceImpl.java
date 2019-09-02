@@ -3,7 +3,6 @@ package com.arrcen.cdademo.service.impl;
 import com.arrcen.cdademo.dao.OIDassignmentTableDao;
 import com.arrcen.cdademo.pojo.OIDassignmentTable;
 import com.arrcen.cdademo.service.OIDmanagementService;
-import com.github.wenhao.jpa.Sorts;
 import com.github.wenhao.jpa.Specifications;
 import com.google.common.collect.Lists;
 import org.apache.commons.lang3.StringUtils;
@@ -25,12 +24,14 @@ public class OIDmanagementServiceImpl implements OIDmanagementService {
 	OIDassignmentTableDao oiDassignmentTableDao;
 
 	@Override
-	public Map<String, Object> getPage(int page, int size, String order, String properties, String systemId, String oidName) {
+	public Map<String, Object> getPage(int page, int size, String order, String properties, String systemId, String oidName, String mappedCode, String oid) {
 		Sort sort = new Sort(Sort.Direction.fromString(order), properties);
 		Pageable pageable = PageRequest.of(page - 1, size, sort);
 
 		Specification<OIDassignmentTable> specification = Specifications.<OIDassignmentTable>and()
 				.eq(StringUtils.isNotBlank(systemId), "系统序号", systemId)
+				.eq(StringUtils.isNotBlank(mappedCode), "映射代码表", mappedCode)
+				.eq(StringUtils.isNotBlank(oid), "OID", oid)
 				.like(StringUtils.isNotBlank(oidName), "OID名称", "%" + oidName + "%")
 				.build();
 //		Sort sort = Sorts.builder().asc(properties).build();
@@ -64,8 +65,9 @@ public class OIDmanagementServiceImpl implements OIDmanagementService {
 
 	@Override
 	public void insertOID(OIDassignmentTable oiDassignmentTable) {
-		int maxOID = oiDassignmentTableDao.findMax();
-		oiDassignmentTable.set系统序号(maxOID + 1 + "");
+		Integer i = oiDassignmentTableDao.findMax();
+		int max = i == null ? 0 : i;
+		oiDassignmentTable.set系统序号(max + 1 + "");
 		oiDassignmentTableDao.save(oiDassignmentTable);
 	}
 

@@ -1,6 +1,8 @@
 package com.arrcen.cdademo.pojo;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -25,15 +27,19 @@ public class Patient implements Serializable{
 	private String 出生日期;
 	private String 性别代码;
 	@Transient
+	@JsonIgnore
 	private String 性别;
 	private String 婚姻状况代码;
 	@Transient
+	@JsonIgnore
 	private String 婚姻状况;
 	private String 民族;
 	@Transient
+	@JsonIgnore
 	private String 民族名称;
 	private String 职业类别代码;
 	@Transient
+	@JsonIgnore
 	private String 职业类别;
 	private String 工作单位名称;
 	private String 工作单位电话号码;
@@ -47,11 +53,74 @@ public class Patient implements Serializable{
 	private String 邮政编码;
 	private String 患者电话号码;
 	private String 联系人姓名;
+	private String 患者关系代码;
+	private String 联系人地址_省;
+	private String 联系人地址_市;
+	private String 联系人地址_县;
+	private String 联系人地址_乡;
+	private String 联系人地址_村;
+	private String 联系人地址_门牌号;
 	private String 联系人电话号码;
 	private String 建档日期时间;
 	private String 建档医疗机构组织机构;
 	private String 建档者姓名;
 	private String 建档者序号;
+
+	public String get患者关系代码() {
+		return 患者关系代码;
+	}
+
+	public void set患者关系代码(String 患者关系代码) {
+		this.患者关系代码 = 患者关系代码;
+	}
+
+	public String get联系人地址_省() {
+		return 联系人地址_省;
+	}
+
+	public void set联系人地址_省(String 联系人地址_省) {
+		this.联系人地址_省 = 联系人地址_省;
+	}
+
+	public String get联系人地址_市() {
+		return 联系人地址_市;
+	}
+
+	public void set联系人地址_市(String 联系人地址_市) {
+		this.联系人地址_市 = 联系人地址_市;
+	}
+
+	public String get联系人地址_县() {
+		return 联系人地址_县;
+	}
+
+	public void set联系人地址_县(String 联系人地址_县) {
+		this.联系人地址_县 = 联系人地址_县;
+	}
+
+	public String get联系人地址_乡() {
+		return 联系人地址_乡;
+	}
+
+	public void set联系人地址_乡(String 联系人地址_乡) {
+		this.联系人地址_乡 = 联系人地址_乡;
+	}
+
+	public String get联系人地址_村() {
+		return 联系人地址_村;
+	}
+
+	public void set联系人地址_村(String 联系人地址_村) {
+		this.联系人地址_村 = 联系人地址_村;
+	}
+
+	public String get联系人地址_门牌号() {
+		return 联系人地址_门牌号;
+	}
+
+	public void set联系人地址_门牌号(String 联系人地址_门牌号) {
+		this.联系人地址_门牌号 = 联系人地址_门牌号;
+	}
 
 	public String get建档者序号() {
 		return 建档者序号;

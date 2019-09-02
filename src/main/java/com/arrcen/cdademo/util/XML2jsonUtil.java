@@ -453,10 +453,10 @@ public class XML2jsonUtil {
 
 		xml.append(str);
 
-		SAXReader reader =new SAXReader();
+		SAXReader reader = new SAXReader();
 
 		try {
-			Document document =reader.read(new ByteArrayInputStream(xml.toString().getBytes()));
+			Document document = reader.read(new ByteArrayInputStream(xml.toString().getBytes()));
 			JSONObject obj = xml2Obj(document.getRootElement());
 			System.out.println(obj.toJSONString());
 		} catch (DocumentException e) {
@@ -527,9 +527,9 @@ public class XML2jsonUtil {
 
 	public static JSONObject testTrans(Element element) {
 
-		JSONObject returnObj =new JSONObject();
+		JSONObject returnObj = new JSONObject();
 
-		JSONObject rootObj =new JSONObject();
+		JSONObject rootObj = new JSONObject();
 
 
 		List<?> attrs = element.attributes();
@@ -539,52 +539,51 @@ public class XML2jsonUtil {
 
 //属性
 
-		JSONObject attrObj =new JSONObject();
+		JSONObject attrObj = new JSONObject();
 
 		for (Object object : attrs) {
 
-			Attribute attr = (Attribute)object;
+			Attribute attr = (Attribute) object;
 
-			attrObj.put(attr.getName(),attr.getValue());
+			attrObj.put(attr.getName(), attr.getValue());
 
 		}
 
-		rootObj.put("attrs",attrObj);
-
+		rootObj.put("attrs", attrObj);
 
 
 //子节点
 
-		JSONArray childArray =new JSONArray();
+		JSONArray childArray = new JSONArray();
 
 		for (Object child : childs) {
 
-			childArray.add(testTrans((Element)child));
+			childArray.add(testTrans((Element) child));
 
 		}
 
-		rootObj.put("childs",childArray);
+		rootObj.put("childs", childArray);
 
 
 //叶子节点，文本
 
 		if (childs.isEmpty()) {
 
-			rootObj.put("text",element.getText());
+			rootObj.put("text", element.getText());
 
 		}
 
 
 //返回值包裹处理
 
-		returnObj.put(element.getName(),rootObj);
+		returnObj.put(element.getName(), rootObj);
 
 
 		return returnObj;
 
 	}
 
-	public static Element obj2Xml(JSONObject obj)throws Exception {
+	public static Element obj2Xml(JSONObject obj) throws Exception {
 
 		if (obj.keySet().size() > 1) {
 
@@ -592,29 +591,30 @@ public class XML2jsonUtil {
 
 		}
 
-		String rootKey = (String)obj.keySet().toArray()[0];
+		String rootKey = (String) obj.keySet().toArray()[0];
 
-		Element rootEle = DocumentHelper.createElement(rootKey);
+		Document document = DocumentHelper.createDocument();
+		Element rootEle = document.addElement(rootKey, "urn:hl7-org:v3");
 
-		JSONObject rootObj =obj.getJSONObject(rootKey);
+		JSONObject rootObj = obj.getJSONObject(rootKey);
 
 
-		JSONObject attrsObj =rootObj.getJSONObject("attrs");
+		JSONObject attrsObj = rootObj.getJSONObject("attrs");
 
 		for (String attrKey : attrsObj.keySet()) {
 
-			rootEle.addAttribute(attrKey,attrsObj.getString(attrKey));
+			rootEle.addAttribute(attrKey, attrsObj.getString(attrKey));
 
 		}
 
 
-		JSONArray childs =rootObj.getJSONArray("childs");
+		JSONArray childs = rootObj.getJSONArray("childs");
 
-		if(childs.isEmpty()) {
+		if (childs.isEmpty()) {
 
-			String text =rootObj.getString("text");
+			String text = rootObj.getString("text");
 
-			if (text !=null) {
+			if (text != null) {
 
 				rootEle.setText(text);
 
@@ -624,7 +624,7 @@ public class XML2jsonUtil {
 
 		for (Object child : childs) {
 
-			rootEle.add(obj2Xml((JSONObject)child));
+			rootEle.add(obj2Xml((JSONObject) child));
 
 		}
 

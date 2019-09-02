@@ -4,19 +4,21 @@ import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.io.file.FileReader;
 import cn.hutool.core.io.file.FileWriter;
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import com.arrcen.cdademo.dao.CDAdocumentDao;
 import com.arrcen.cdademo.service.CDAtemplateService;
 import com.arrcen.cdademo.util.XML2jsonUtil;
 import org.dom4j.Attribute;
 import org.dom4j.Document;
 import org.dom4j.Element;
+import org.dom4j.io.OutputFormat;
 import org.dom4j.io.SAXReader;
+import org.dom4j.io.XMLWriter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.StringWriter;
 import java.util.Collections;
 import java.util.List;
 
@@ -71,10 +73,19 @@ public class CDAtemplateServiceImpl implements CDAtemplateService {
 				.addAttribute("xmlns:mif", "urn:hl7-org:v3/mif")
 				.addAttribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance")
 				.addAttribute("xsi:schemaLocation", "urn:hl7-org:v3 ..\\sdschemas\\SDA.xsd");
-		xml = document.asXML();
+		StringWriter stringWriter = new StringWriter();
+		OutputFormat format = OutputFormat.createPrettyPrint();
+		format.setEncoding("UTF-8"); //设置XML文档的编码类型
+		format.setIndent(true); //设置是否缩进
+		format.setIndent("	"); //缩进方式
+		format.setNewlines(true); //设置是否换行
+		XMLWriter writer = new XMLWriter(stringWriter, format);
+		writer.write(document);
+		writer.flush();
+		xml = stringWriter.getBuffer().toString();
 		String templateName = "template" + index + ".ftl";
 		File file = FileUtil.file("D://cda//templates//" + templateName);
-		FileWriter writer = new FileWriter(file, "UTF-8");
-		writer.write(xml);
+		FileWriter fileWriter = new FileWriter(file, "UTF-8");
+		fileWriter.write(xml);
 	}
 }

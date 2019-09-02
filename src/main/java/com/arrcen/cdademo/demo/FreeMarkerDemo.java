@@ -29,7 +29,7 @@ public class FreeMarkerDemo {
 	public void getXml() throws Exception {
 		Configuration configuration = freeMarkerConfigurer.getConfiguration();
 		//从config对象中获得模板对象。需要制定一个模板文件的名字。
-		Template template = configuration.getTemplate("template1.ftl");
+		Template template = configuration.getTemplate("template01.ftl");
 		//创建模板需要的数据集。可以是一个map对象也可以是一个pojo，把模板需要的数据都放入数据集。
 		Map root = new HashMap<>();
 		Patient patient = new Patient();
