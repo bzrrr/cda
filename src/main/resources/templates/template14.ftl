@@ -175,6 +175,7 @@
                     <code code="DE02.10.002.00" displayName="产次"
                           codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录"/>
                     <value xsi:type="INT" value="${expectanceRecord.产次!'产次'}"/>
+                </observation>
             </entry>
 
             <entry>

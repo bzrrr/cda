@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface FirstCourseRecordDao extends JpaRepository<FirstCourseRecord,String> {
 
+    @Query(value = "select * from PUB13_首次病程记录 where 住院号 = ?1",nativeQuery = true)
     FirstCourseRecord findBy住院号(String 住院号);
 
     @Query(value = "select 值含义 from pub_卫生数据元值域 where 值域名称 = '生理性别代码表(GB/T 2261.1)' and 值 = ?1",nativeQuery = true)

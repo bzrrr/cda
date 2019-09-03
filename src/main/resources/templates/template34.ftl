@@ -424,8 +424,8 @@
                     <entry>
                         <observation classCode="OBS" moodCode="EVN">
                             <code code="DE04.10.126.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录"
-                                  displayName="皮肤和粘膜检查结果"/>
-                            <value xsi:type="ST">${admissionRecord.体格检查_皮肤和粘膜检查结果!'体格检查_皮肤和粘膜检查结果'}</value>
+                                  displayName="皮肤和黏膜检査结果"/>
+                            <value xsi:type="ST">${admissionRecord.体格检查_皮肤和黏膜检査结果!'体格检查_皮肤和黏膜检査结果'}</value>
                         </observation>
                     </entry>
                     <entry>

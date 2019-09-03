@@ -8,6 +8,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.arrcen.cdademo.dao.*;
 import com.arrcen.cdademo.pojo.*;
 import com.arrcen.cdademo.service.CDAgenerateService;
+import com.arrcen.cdademo.service.impl.generate.GenerateService;
 import com.arrcen.cdademo.util.FastDFSClientWrapper;
 import com.arrcen.cdademo.util.FileUtils;
 import com.arrcen.cdademo.util.PinYinUtil;
@@ -57,6 +58,8 @@ public class CDAgenerateServiceImpl implements CDAgenerateService {
 	private MedicalExpenseRecordDao medicalExpenseRecordDao;
 	@Autowired
 	private PatientCdaDocumentDao patientCdaDocumentDao;
+	@Autowired
+	private GenerateService generateService;
 
 	private static HashBasedTable<Object, Object, Object> templateMap;
 
@@ -104,7 +107,7 @@ public class CDAgenerateServiceImpl implements CDAgenerateService {
 		//创建模板需要的数据集。可以是一个map对象也可以是一个pojo，把模板需要的数据都放入数据集。
 		Map sourceMap = new HashMap<>();
 		Patient patient = patientDao.getOne(systemId);
-		packageSourceMap(systemId, sourceMap, docId, effectiveTime, patient);
+		packageSourceMap(systemId, sourceMap, docId, effectiveTime, patient,index);
 
 		//创建一个Writer对象，指定生成的文件保存的路径及文件名。
 //		Writer out = new FileWriter(new File("D:\\template.xml"));
@@ -236,11 +239,12 @@ public class CDAgenerateServiceImpl implements CDAgenerateService {
 
 	/**
 	 * 填充模板需要的数据集
-	 *
-	 * @param systemId
+	 *  @param systemId
 	 * @param sourceMap
+	 * @param index
 	 */
-	private void packageSourceMap(String systemId, Map sourceMap, String docId, String effectiveTime, Patient patient) {
+	private void packageSourceMap(String systemId, Map sourceMap, String docId, String effectiveTime, Patient patient, String index) {
+
 		DocInfo docInfo = new DocInfo();
 		docInfo.setDocId(docId);
 		docInfo.setEffectiveTime(effectiveTime);
@@ -256,16 +260,19 @@ public class CDAgenerateServiceImpl implements CDAgenerateService {
 		String orgName = medicalOrganizationInfoDao.findOrgNameByCode(orgId);
 		sourceMap.put("orgName", orgName);
 
-		String patientHealthCardId = patient.get居民健康卡号();
-		PatientHealthDocInfo patientHealthDocInfo = patientHealthDocInfoDao.findBy居民健康卡号(patientHealthCardId);
-		sourceMap.put("patientHealthDocInfo", patientHealthDocInfo);
+		generateService.addData(sourceMap,patient,index);
 
-		HealthIncidentInfo healthIncidentInfo = healthIncidentInfoDao.findBy居民健康卡号(patientHealthCardId);
-		sourceMap.put("healthIncidentInfo", healthIncidentInfo);
-
-		MedicalExpenseRecord medicalExpenseRecord = medicalExpenseRecordDao.findBy居民健康卡号(patientHealthCardId);
-		sourceMap.put("medicalExpenseRecord", medicalExpenseRecord);
+//		String patientHealthCardId = patient.get居民健康卡号();
+//		PatientHealthDocInfo patientHealthDocInfo = patientHealthDocInfoDao.findBy居民健康卡号(patientHealthCardId);
+//		sourceMap.put("patientHealthDocInfo", patientHealthDocInfo);
+//
+//		HealthIncidentInfo healthIncidentInfo = healthIncidentInfoDao.findBy居民健康卡号(patientHealthCardId);
+//		sourceMap.put("healthIncidentInfo", healthIncidentInfo);
+//
+//		MedicalExpenseRecord medicalExpenseRecord = medicalExpenseRecordDao.findBy居民健康卡号(patientHealthCardId);
+//		sourceMap.put("medicalExpenseRecord", medicalExpenseRecord);
 	}
+
 
 	@Override
 	public void update(String templateIndex, String docInfo) {

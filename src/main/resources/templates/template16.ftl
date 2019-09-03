@@ -549,7 +549,7 @@
                         <observation classCode="OBS" moodCode="EVN">
                             <code code="DE02.01.040.00" codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录"
                                   displayName="新生儿性别代码"/>
-                            <value xsi:type="CD" code="${cesareanSection.新生儿性别代码!'新生儿性别代码'}" displayName="" codeSystem="2.16.156.10011.2.3.3.4"
+                            <value xsi:type="CD" code="${cesareanSection.新生儿性别代码!'新生儿性别代码'}" codeSystem="2.16.156.10011.2.3.3.4"
                                    codeSystemName="性别代码表" displayName="${cesareanSection.新生儿性别!'新生儿性别'}"/>
                         </observation>
                     </entry>

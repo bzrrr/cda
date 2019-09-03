@@ -30,9 +30,9 @@ public class EmergencyMedicalRecord implements Serializable {
     private String 主诉;
     private String 现病史;
     private String 既往史;
-    private String 体格检査;
+    private String 体格检查;
     private String 中医四诊观察结果;
-    private String 辅助检査项目;
+    private String 辅助检查项目;
     private String 辅助检查结果;
     private String 初步诊断_西医诊断编码;
     private String 初步诊断_西医诊断名称;
@@ -257,20 +257,20 @@ public class EmergencyMedicalRecord implements Serializable {
         this.初步诊断_中医证候名称 = 初步诊断_中医证候名称;
     }
 
-    public String get体格检査() {
-        return 体格检査;
+    public String get体格检查() {
+        return 体格检查;
     }
 
-    public void set体格检査(String 体格检査) {
-        this.体格检査 = 体格检査;
+    public void set体格检查(String 体格检查) {
+        this.体格检查 = 体格检查;
     }
 
-    public String get辅助检査项目() {
-        return 辅助检査项目;
+    public String get辅助检查项目() {
+        return 辅助检查项目;
     }
 
-    public void set辅助检査项目(String 辅助检査项目) {
-        this.辅助检査项目 = 辅助检査项目;
+    public void set辅助检查项目(String 辅助检查项目) {
+        this.辅助检查项目 = 辅助检查项目;
     }
 
     public String get辨证依据() {

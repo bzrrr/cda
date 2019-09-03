@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface DischargeSummaryDao extends JpaRepository<DischargeSummary,String> {
 
+    @Query(value = "select * from PUB15_出院小结记录 where 居民健康卡号 = ?1",nativeQuery = true)
     DischargeSummary findBy居民健康卡号(String 居民健康卡号);
 
     @Query(value = "select 值含义 from pub_卫生数据元值域 where 值域名称 = '生理性别代码表(GB/T 2261.1)' and 值 = ?1",nativeQuery = true)

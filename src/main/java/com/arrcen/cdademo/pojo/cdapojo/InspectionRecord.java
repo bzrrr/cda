@@ -84,7 +84,7 @@ public class InspectionRecord implements Serializable {
     private String 检査报告单编号;
     private String 检査报告机构名称;
     private String 检査报告科室;
-    private String 检查报告结果_客观提示;
+    private String 检査报告结果_客观所见;
     private String 检查报告结果_主观提示;
     private String 检查报告备注;
     private String 检查报告曰期;
@@ -563,12 +563,12 @@ public class InspectionRecord implements Serializable {
         this.检査报告科室 = 检査报告科室;
     }
 
-    public String get检查报告结果_客观提示() {
-        return 检查报告结果_客观提示;
+    public String get检査报告结果_客观所见() {
+        return 检査报告结果_客观所见;
     }
 
-    public void set检查报告结果_客观提示(String 检查报告结果_客观提示) {
-        this.检查报告结果_客观提示 = 检查报告结果_客观提示;
+    public void set检査报告结果_客观所见(String 检査报告结果_客观所见) {
+        this.检査报告结果_客观所见 = 检査报告结果_客观所见;
     }
 
     public String get检查报告结果_主观提示() {

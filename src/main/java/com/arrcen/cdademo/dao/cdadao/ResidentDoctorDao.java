@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface ResidentDoctorDao extends JpaRepository<ResidentDoctor,String> {
 
+    @Query(value = "select * from PUB14_住院医嘱 where 住院号 = ?1",nativeQuery = true)
     ResidentDoctor findBy住院号(String 住院号);
 
     @Query(value = "select 值含义 from pub_卫生数据元值域 where 值域名称 = '生理性别代码表(GB/T 2261.1)' and 值 = ?1",nativeQuery = true)

@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface AdmissionDeathRecord24HDao extends JpaRepository<AdmissionDeathRecord24H,String> {
 
+    @Query(value = "select * from PUB12_24H内入院死亡记录 where 住院号 = ?1",nativeQuery = true)
     AdmissionDeathRecord24H findBy住院号(String 住院号);
 
     @Query(value = "select 值含义 from pub_卫生数据元值域 where 值域名称 = '生理性别代码表(GB/T 2261.1)' and 值 = ?1",nativeQuery = true)

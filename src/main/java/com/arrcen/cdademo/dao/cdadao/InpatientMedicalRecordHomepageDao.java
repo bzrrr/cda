@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface InpatientMedicalRecordHomepageDao extends JpaRepository<InpatientMedicalRecordHomepage,String> {
 
+    @Query(value = "select * from PUB10_住院病案首页 where 居民健康卡号 = ?1",nativeQuery = true)
     InpatientMedicalRecordHomepage findBy居民健康卡号(String 居民健康卡号);
 
     @Query(value = "select 值含义 from pub_卫生数据元值域 where 值域名称 = '医疗付费方式代码表' and 值 = ?1",nativeQuery = true)

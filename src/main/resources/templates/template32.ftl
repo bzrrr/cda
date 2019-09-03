@@ -679,7 +679,7 @@
                                     <id root="2.16.156.10011.1.4" extension=""/>
                                     <code displayName="第一助手"/>
                                     <playingEntity classCode="PSN" determinerCode="INSTANCE">
-                                        <name>${inpatientMedicalRecordHomepage.第一助姓名!'Ⅰ助姓名'}</name>
+                                        <name>${inpatientMedicalRecordHomepage.Ｉ助姓名!'Ⅰ助姓名'}</name>
                                     </playingEntity>
                                 </participantRole>
                             </participant>
@@ -688,7 +688,7 @@
                                     <id root="2.16.156.10011.1.4" extension=""/>
                                     <code displayName="第二助手"/>
                                     <playingEntity classCode="PSN" determinerCode="INSTANCE">
-                                        <name>${inpatientMedicalRecordHomepage.第二助姓名!'Ⅱ助姓名'}</name>
+                                        <name>${inpatientMedicalRecordHomepage.II助姓名!'Ⅱ助姓名'}</name>
                                     </playingEntity>
                                 </participantRole>
                             </participant>

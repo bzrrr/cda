@@ -153,15 +153,15 @@
                 </observation>
             </entry>
 
-            <#--<!-- 出生体重 &ndash;&gt;
+            <!-- 出生体重 &ndash;&gt;
             <entry>
                 <observation classCode="OBS" moodCode="EVN">
                     <code code="DE04.10.019.00" displayName="出生体重"
                           codeSystem="2.16.156.10011.2.2.2" codeSystemName="卫生信息数据元目录"/>
-                    <value xsi:type="PQ" unit="" value="${postanesthesiaVisitRecord.麻醉医师签名!'麻醉医师签名'}"></value>
+                    <value xsi:type="PQ" unit="" value=""></value>
                 </observation>
-            </entry>
-        </section>-->
+            </entry>-->
+        </section>
     </component>
 
     <!-- 一般状况检查章节 -->

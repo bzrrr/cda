@@ -34,7 +34,7 @@
                 <!-- 患者身份证 -->
                 <id root="2.16.156.10011.1.3" extension="${patient.患者身份证件号码!'患者身份证件号码'}"/>
                 <name>${internalDischargeRecord24H.患者姓名!'患者姓名'}</name>
-                <administrativeGenderCode code="${InternalDischargeRecord24H.性别代码!'性别代码'}" codeSystem="2.16.156.10011.2.3.3.4"
+                <administrativeGenderCode code="${internalDischargeRecord24H.性别代码!'性别代码'}" codeSystem="2.16.156.10011.2.3.3.4"
                                           codeSystemName="生理性别代码表(GB/T 2261.1)" displayName="${internalDischargeRecord24H.性别!'性别'}"/>
                 <maritalStatusCode code="${internalDischargeRecord24H.婚姻状况代码!'婚姻状况代码'}" displayName="${internalDischargeRecord24H.婚姻状况!'婚姻状况'}" codeSystem="2.16.156.10011.2.3.3.5"
                                    codeSystemName="婚姻状况代码表(GB/T 2261.2)"/>

@@ -176,8 +176,8 @@ public class InpatientMedicalRecordHomepage implements Serializable {
     private String 手术级别;
     private String 手术及操作名称;
     private String 手术者姓名;
-    private String 第一助姓名;//Ⅰ助姓名
-    private String 第二助姓名;//Ⅱ助姓名
+    private String Ｉ助姓名;
+    private String II助姓名;
     private String 手术切口类别代码;
     @Transient
     @JsonIgnore
@@ -1212,20 +1212,20 @@ public class InpatientMedicalRecordHomepage implements Serializable {
         this.手术者姓名 = 手术者姓名;
     }
 
-    public String get第一助姓名() {
-        return 第一助姓名;
+    public String getＩ助姓名() {
+        return Ｉ助姓名;
     }
 
-    public void set第一助姓名(String 第一助姓名) {
-        this.第一助姓名 = 第一助姓名;
+    public void setＩ助姓名(String ｉ助姓名) {
+        Ｉ助姓名 = ｉ助姓名;
     }
 
-    public String get第二助姓名() {
-        return 第二助姓名;
+    public String getII助姓名() {
+        return II助姓名;
     }
 
-    public void set第二助姓名(String 第二助姓名) {
-        this.第二助姓名 = 第二助姓名;
+    public void setII助姓名(String II助姓名) {
+        this.II助姓名 = II助姓名;
     }
 
     public String get手术切口类别代码() {

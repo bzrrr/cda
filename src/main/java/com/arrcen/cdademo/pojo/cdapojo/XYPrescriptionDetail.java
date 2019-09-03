@@ -13,7 +13,7 @@ import java.io.Serializable;
  *
  */
 @Entity
-@Table(name = "PUB03_西医处方明细")
+@Table(name = "PUB03_西药处方明细")
 public class XYPrescriptionDetail implements Serializable {
 
     @Id

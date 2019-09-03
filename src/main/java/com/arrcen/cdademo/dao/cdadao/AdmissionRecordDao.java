@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface AdmissionRecordDao extends JpaRepository<AdmissionRecord,String> {
 
+    @Query(value = "select * from PUB12_入院记录 where 住院号 = ?1",nativeQuery = true)
     AdmissionRecord findBy住院号(String 住院号);
 
     @Query(value = "select 值含义 from pub_卫生数据元值域 where 值域名称 = '民族类别代码表(GB 3304)' and 值 = ?1",nativeQuery = true)

@@ -131,7 +131,7 @@ public class CInpatientMedicalRecordHomepage implements Serializable {
     private String 使用医疗机构中药制剂标志;
     private String 使用中医诊疗设备标志;
     private String 使用中医诊疗技术标志;
-    private String 辨证施护标志;
+    private String 辩证施护标志;
     private String 出院中医诊断_主病名称;
     private String 出院中医诊断_主病编码;
     private String 出院中医诊断_主病_入院病情代码;
@@ -201,8 +201,8 @@ public class CInpatientMedicalRecordHomepage implements Serializable {
     private String 手术级别;
     private String 手术及操作名称;
     private String 手术者姓名;
-    private String 第一助姓名;//Ⅰ助姓名
-    private String 第二助姓名;//Ⅱ助姓名
+    private String II助姓名;
+    private String Ｉ助姓名;
     private String 手术切口类别代码;
     @Transient
     @JsonIgnore
@@ -241,7 +241,7 @@ public class CInpatientMedicalRecordHomepage implements Serializable {
     private Long 诊断类_实验室诊断费;
     private Long 诊断类_影像学诊断费;
     private Long 诊断类_临床诊断项目费;
-    private Long 治疗类_非手术室治疗项目费;
+    private Long 治疗类_非手术治疗项目费;
     private Long 治疗类_非手术_临床物理治疗费;
     private Long 治疗类_手术治疗费;
     private Long 治疗类_手术治疗费_麻醉费;
@@ -1002,12 +1002,12 @@ public class CInpatientMedicalRecordHomepage implements Serializable {
         this.使用中医诊疗技术标志 = 使用中医诊疗技术标志;
     }
 
-    public String get辨证施护标志() {
-        return 辨证施护标志;
+    public String get辩证施护标志() {
+        return 辩证施护标志;
     }
 
-    public void set辨证施护标志(String 辨证施护标志) {
-        this.辨证施护标志 = 辨证施护标志;
+    public void set辩证施护标志(String 辩证施护标志) {
+        this.辩证施护标志 = 辩证施护标志;
     }
 
     public String get出院中医诊断_主病名称() {
@@ -1402,20 +1402,20 @@ public class CInpatientMedicalRecordHomepage implements Serializable {
         this.手术者姓名 = 手术者姓名;
     }
 
-    public String get第一助姓名() {
-        return 第一助姓名;
+    public String getII助姓名() {
+        return II助姓名;
     }
 
-    public void set第一助姓名(String 第一助姓名) {
-        this.第一助姓名 = 第一助姓名;
+    public void setII助姓名(String II助姓名) {
+        this.II助姓名 = II助姓名;
     }
 
-    public String get第二助姓名() {
-        return 第二助姓名;
+    public String getＩ助姓名() {
+        return Ｉ助姓名;
     }
 
-    public void set第二助姓名(String 第二助姓名) {
-        this.第二助姓名 = 第二助姓名;
+    public void setＩ助姓名(String ｉ助姓名) {
+        Ｉ助姓名 = ｉ助姓名;
     }
 
     public String get手术切口类别代码() {
@@ -1658,12 +1658,12 @@ public class CInpatientMedicalRecordHomepage implements Serializable {
         this.诊断类_临床诊断项目费 = 诊断类_临床诊断项目费;
     }
 
-    public Long get治疗类_非手术室治疗项目费() {
-        return 治疗类_非手术室治疗项目费;
+    public Long get治疗类_非手术治疗项目费() {
+        return 治疗类_非手术治疗项目费;
     }
 
-    public void set治疗类_非手术室治疗项目费(Long 治疗类_非手术室治疗项目费) {
-        this.治疗类_非手术室治疗项目费 = 治疗类_非手术室治疗项目费;
+    public void set治疗类_非手术治疗项目费(Long 治疗类_非手术治疗项目费) {
+        this.治疗类_非手术治疗项目费 = 治疗类_非手术治疗项目费;
     }
 
     public Long get治疗类_非手术_临床物理治疗费() {

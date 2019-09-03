@@ -72,8 +72,8 @@ public class AdmissionRecord implements Serializable {
     private Byte 体格检查_舒张压;
     private Long 体格检查_身高;
     private Long 体格检查_体重;
-    private String 体格检查_一般状况检查结果;
-    private String 体格检查_皮肤和粘膜检查结果;
+    private String 体格检查_一般状况检查结果;//一般状况检査结果 一般状况检查结果
+    private String 体格检查_皮肤和黏膜检查结果;
     private String 体格检查_浅表淋巴结检查结果;
     private String 体格检查_头部及其器官检查结果;
     private String 体格检查_颈部检查结果;
@@ -503,21 +503,9 @@ public class AdmissionRecord implements Serializable {
         this.体格检查_体重 = 体格检查_体重;
     }
 
-    public String get体格检查_一般状况检查结果() {
-        return 体格检查_一般状况检查结果;
-    }
 
-    public void set体格检查_一般状况检查结果(String 体格检查_一般状况检查结果) {
-        this.体格检查_一般状况检查结果 = 体格检查_一般状况检查结果;
-    }
 
-    public String get体格检查_皮肤和粘膜检查结果() {
-        return 体格检查_皮肤和粘膜检查结果;
-    }
 
-    public void set体格检查_皮肤和粘膜检查结果(String 体格检查_皮肤和粘膜检查结果) {
-        this.体格检查_皮肤和粘膜检查结果 = 体格检查_皮肤和粘膜检查结果;
-    }
 
     public String get体格检查_浅表淋巴结检查结果() {
         return 体格检查_浅表淋巴结检查结果;
@@ -573,6 +561,22 @@ public class AdmissionRecord implements Serializable {
 
     public void set体格检查_外生殖器检查结果(String 体格检查_外生殖器检查结果) {
         this.体格检查_外生殖器检查结果 = 体格检查_外生殖器检查结果;
+    }
+
+    public String get体格检查_一般状况检查结果() {
+        return 体格检查_一般状况检查结果;
+    }
+
+    public void set体格检查_一般状况检查结果(String 体格检查_一般状况检查结果) {
+        this.体格检查_一般状况检查结果 = 体格检查_一般状况检查结果;
+    }
+
+    public String get体格检查_皮肤和黏膜检查结果() {
+        return 体格检查_皮肤和黏膜检查结果;
+    }
+
+    public void set体格检查_皮肤和黏膜检查结果(String 体格检查_皮肤和黏膜检查结果) {
+        this.体格检查_皮肤和黏膜检查结果 = 体格检查_皮肤和黏膜检查结果;
     }
 
     public String get体格检查_脊柱检查结果() {

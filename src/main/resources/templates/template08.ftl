@@ -32,7 +32,7 @@
                 <name>${patient.患者姓名!'患者姓名'}</name>
                 <!-- 性别代码 -->
                 <administrativeGenderCode code="${patient.性别代码!'性别代码'}" codeSystem="2.16.156.10011.2.3.3.4"
-                                          codeSystemName="生理性别代码表(GB/T 2261.1)" displayName="${patient.性别!'性别'}/>
+                                          codeSystemName="生理性别代码表(GB/T 2261.1)" displayName="${patient.性别!'性别'}"/>
                 <birthTime value="${patient.出生日期!'出生日期'}"/>
                 <age unit="岁" value="${treatmentRecord.年龄岁!'年龄岁'}"/>
             </patient>

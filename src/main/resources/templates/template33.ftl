@@ -551,7 +551,7 @@
                                     <id/>
                                     <representedOrganization>
                                         <!-- 转科科室 -->
-                                        <name><${cInpatientMedicalRecordHomepage.转科科别!'转科科别'}/name>
+                                        <name>${cInpatientMedicalRecordHomepage.转科科别!'转科科别'}</name>
                                     </representedOrganization>
                                 </assignedAuthor>
                             </author>
@@ -830,7 +830,7 @@
                                     <id root="2.16.156.10011.1.4" extension=""/>
                                     <code displayName="第一助手"/>
                                     <playingEntity classCode="PSN" determinerCode="INSTANCE">
-                                        <name>${cInpatientMedicalRecordHomepage.第一助姓名!'Ⅰ助姓名'}</name>
+                                        <name>${cInpatientMedicalRecordHomepage.Ｉ助姓名!'Ⅰ助姓名'}</name>
                                     </playingEntity>
                                 </participantRole>
                             </participant>
@@ -839,7 +839,7 @@
                                     <id root="2.16.156.10011.1.4" extension=""/>
                                     <code displayName="第二助手"/>
                                     <playingEntity classCode="PSN" determinerCode="INSTANCE">
-                                        <name>${cInpatientMedicalRecordHomepage.第二助姓名!'Ⅱ助姓名'}</name>
+                                        <name>${cInpatientMedicalRecordHomepage.II助姓名!'Ⅱ助姓名'}</name>
                                     </playingEntity>
                                 </participantRole>
                             </participant>
@@ -1127,7 +1127,7 @@
                                 <observation classCode="OBS" moodCode="EVN">
                                     <code code="HDSD00.12.145" codeSystem="2.16.156.10011.2.2.4"
                                           codeSystemName="住院病案首页基本数据集" displayName="治疗-非手术治疗项目费"/>
-                                    <value xsi:type="MO" value="${cInpatientMedicalRecordHomepage.治疗类_非手术室治疗项目费!'治疗类_非手术室治疗项目费'}" currency="元"/>
+                                    <value xsi:type="MO" value="${cInpatientMedicalRecordHomepage.治疗类_非手术治疗项目费!'治疗类_非手术治疗项目费'}" currency="元"/>
                                     <entryRelationship typeCode="COMP">
                                         <observation classCode="OBS" moodCode="EVN">
                                             <code code="HDSD00.12.146" codeSystem="2.16.156.10011.2.2.4"

@@ -35,7 +35,7 @@
     </recordTarget>
 
     <author typeCode="AUT" contextControlCode="OP">
-        <time value=${patient.建档日期时间!'建档日期时间'}""/>
+        <time value="${patient.建档日期时间!'建档日期时间'}"/>
         <assignedAuthor classCode="ASSIGNED">
             <id root="2.16.156.10011.1.7" extension=""/>
             <assignedPerson>

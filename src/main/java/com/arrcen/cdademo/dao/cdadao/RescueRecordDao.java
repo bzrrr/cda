@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface RescueRecordDao extends JpaRepository<RescueRecord,String> {
 
+    @Query(value = "select * from PUB13_抢救记录 where 住院号 = ?1",nativeQuery = true)
     RescueRecord findBy住院号(String 住院号);
 
     @Query(value = "select 值含义 from pub_卫生数据元值域 where 值域名称 = '生理性别代码表(GB/T 2261.1)' and 值 = ?1",nativeQuery = true)

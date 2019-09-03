@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface AnesthesiaInformedConsentDao extends JpaRepository<AnesthesiaInformedConsent,String> {
 
+    @Query(value = "select * from PUB09_麻醉知情同意书 where 门急诊号 = ?1",nativeQuery = true)
     AnesthesiaInformedConsent findBy门急诊号(String 门急诊号);
 
     @Query(value = "select 代码名称 from PUB_ICD10 where 代码类型 = '诊断代码表(ICD_10)' AND 代码值=?1",nativeQuery = true)

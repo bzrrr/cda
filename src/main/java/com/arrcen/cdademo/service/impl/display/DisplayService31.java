@@ -4,10 +4,7 @@ import com.arrcen.cdademo.dao.HealthIncidentInfoDao;
 import com.arrcen.cdademo.dao.MedicalOrganizationInfoDao;
 import com.arrcen.cdademo.dao.PatientDao;
 import com.arrcen.cdademo.dao.cdadao.OtherInformConsentDao;
-import com.arrcen.cdademo.pojo.DocInfo;
-import com.arrcen.cdademo.pojo.HealthIncidentInfo;
-import com.arrcen.cdademo.pojo.Patient;
-import com.arrcen.cdademo.pojo.PatientCdaDocument;
+import com.arrcen.cdademo.pojo.*;
 import com.arrcen.cdademo.pojo.cdapojo.OtherInformConsent;
 import com.arrcen.cdademo.service.impl.CDAdisplayBaseServiceImpl;
 import com.google.common.collect.Maps;
@@ -47,9 +44,13 @@ public class DisplayService31 extends CDAdisplayBaseServiceImpl {
         patient.set性别(patientDao.find性别By性别代码(patient.get性别代码()));
         resultMap.put("患者基本信息",patient);
 
-        //医疗机构
+        //医疗机构名称
         String orgName= medicalOrganizationInfoDao.findOrgNameByCode(patient.get建档医疗机构组织机构());
         resultMap.put("建档医疗机构组织机构名称",orgName);
+
+        //医疗机构信息
+        MedicalOrganizationInfo medicalOrganizationInfo = medicalOrganizationInfoDao.findBy医疗机构组织机构代码(patient.get建档医疗机构组织机构());
+        resultMap.put("医疗机构信息",medicalOrganizationInfo);
 
         //其他知情告知书
         HealthIncidentInfo healthIncidentInfo = healthIncidentInfoDao.findBy居民健康卡号(patient.get居民健康卡号());
