@@ -15,6 +15,7 @@ import java.io.Serializable;
 @Table(name = "PUB09_输血治疗同意书")
 public class BloodTransfusionCureConsent implements Serializable {
 
+    private static final long serialVersionUID = 323756256070834960L;
     @Id
     private String 系统序号;
     private String 门急诊号;

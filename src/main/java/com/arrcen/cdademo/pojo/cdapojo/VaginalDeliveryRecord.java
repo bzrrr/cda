@@ -15,6 +15,7 @@ import java.io.Serializable;
 @Table(name = "PUB06_阴道分娩记录")
 public class VaginalDeliveryRecord implements Serializable {
 
+    private static final long serialVersionUID = -2293709862398744820L;
     @Id
     private String 系统序号;
     private String 住院号;

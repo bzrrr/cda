@@ -15,6 +15,7 @@ import java.io.Serializable;
 @Table(name = "PUB05_麻醉术后访视记录")
 public class PostanesthesiaVisitRecord implements Serializable {
 
+    private static final long serialVersionUID = 2471050709406614662L;
     @Id
     private String 系统序号;
     private String 门急诊号;

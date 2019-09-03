@@ -10,6 +10,7 @@ import java.io.Serializable;
 @Table(name = "PUB_卫生数据元值域")
 public class DataElementRange implements Serializable {
 
+	private static final long serialVersionUID = 4445168493220492270L;
 	@Id
 	private String 系统序号;
 	private String OID;

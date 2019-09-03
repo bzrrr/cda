@@ -15,6 +15,7 @@ import java.io.Serializable;
 @Table(name = "PUB13_转科记录")
 public class TransferRecord implements Serializable {
 
+    private static final long serialVersionUID = 2107275714276126391L;
     @Id
     private String 系统序号;
     private String 住院号;

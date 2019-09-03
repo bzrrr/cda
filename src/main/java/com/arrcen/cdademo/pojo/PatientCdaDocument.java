@@ -12,6 +12,7 @@ import java.io.Serializable;
 @Proxy(lazy = false)
 public class PatientCdaDocument implements Serializable{
 
+	private static final long serialVersionUID = 6270093351650460921L;
 	@Id
 	private String 系统序号;
 	private String docid;

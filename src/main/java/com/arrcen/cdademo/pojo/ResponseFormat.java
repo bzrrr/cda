@@ -2,9 +2,11 @@ package com.arrcen.cdademo.pojo;
 
 import com.google.common.collect.Maps;
 
+import java.io.Serializable;
 import java.util.Map;
 
-public class ResponseFormat {
+public class ResponseFormat implements Serializable{
+	private static final long serialVersionUID = 3050966083443707572L;
 	private static Map<Integer, String> messageMap = Maps.newHashMap();
 
 	//初始化状态码与文字说明

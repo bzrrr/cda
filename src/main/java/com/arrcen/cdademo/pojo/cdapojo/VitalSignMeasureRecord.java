@@ -15,6 +15,7 @@ import java.io.Serializable;
 @Table(name = "PUB07_生命体征测量记录")
 public class VitalSignMeasureRecord implements Serializable {
 
+    private static final long serialVersionUID = -7517169391553778754L;
     @Id
     private String 系统序号;
     private String 住院号;

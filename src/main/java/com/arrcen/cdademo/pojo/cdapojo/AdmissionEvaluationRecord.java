@@ -15,6 +15,7 @@ import java.io.Serializable;
 @Table(name = "PUB08_入院评估记录")
 public class AdmissionEvaluationRecord implements Serializable {
 
+    private static final long serialVersionUID = -7512908544130150741L;
     @Id
     private String 系统序号;
     private String 住院号;

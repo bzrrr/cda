@@ -16,6 +16,7 @@ import java.io.Serializable;
 @Table(name = "PUB04_检验记录")
 public class TestRecord implements Serializable {
 
+    private static final long serialVersionUID = -8726728420431186074L;
     @Id
     private String 系统序号;
     private String 医疗机构组织机构代码;

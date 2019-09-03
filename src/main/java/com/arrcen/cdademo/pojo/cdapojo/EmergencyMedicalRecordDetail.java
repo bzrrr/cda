@@ -13,6 +13,7 @@ import java.io.Serializable;
 @Table(name = "PUB02_急诊留观病历医嘱明细")
 public class EmergencyMedicalRecordDetail implements Serializable {
 
+    private static final long serialVersionUID = 3847946466811834070L;
     @Id
     private String 系统序号;
     private String 单据序号;

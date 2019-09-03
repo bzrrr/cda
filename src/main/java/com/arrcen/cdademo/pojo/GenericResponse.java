@@ -16,6 +16,7 @@ import java.util.Objects;
 @ApiModel
 public class GenericResponse implements Serializable{
 
+	private static final long serialVersionUID = -9093767692016510561L;
 	@ApiModelProperty("响应状态码")
 	private int code;
 

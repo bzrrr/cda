@@ -15,6 +15,7 @@ import java.io.Serializable;
 @Table(name = "PUB13_阶段小结")
 public class StageSummary implements Serializable {
 
+    private static final long serialVersionUID = 6594199691450370453L;
     @Id
     private String 系统序号;
     private String 住院号;

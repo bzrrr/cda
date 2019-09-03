@@ -15,6 +15,7 @@ import java.io.Serializable;
 @Table(name = "PUB05_麻醉术前访视记录")
 public class PreanesthesiaVisitRecord implements Serializable {
 
+    private static final long serialVersionUID = -1697585656416524890L;
     @Id
     private String 系统序号;
     private String 门急诊号;

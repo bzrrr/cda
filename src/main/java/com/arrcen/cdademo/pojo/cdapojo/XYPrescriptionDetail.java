@@ -16,6 +16,7 @@ import java.io.Serializable;
 @Table(name = "PUB03_西药处方明细")
 public class XYPrescriptionDetail implements Serializable {
 
+    private static final long serialVersionUID = 1844934011342373763L;
     @Id
     private String 系统序号;
     private String 单据序号;

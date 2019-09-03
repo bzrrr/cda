@@ -10,6 +10,7 @@ import java.io.Serializable;
 @Table(name = "PUB_OID分配表")
 public class OIDassignmentTable implements Serializable {
 
+  private static final long serialVersionUID = -6456430096138031859L;
   @Id
   private String 系统序号;
   private String OID;

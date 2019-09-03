@@ -14,6 +14,7 @@ import java.io.Serializable;
 @Table(name = "PUB01_患者健康档案信息")
 public class PatientHealthDocInfo implements Serializable{
 
+  private static final long serialVersionUID = -4080704026799101022L;
   @Id
   private String 系统序号;
   private String 居民健康卡号;

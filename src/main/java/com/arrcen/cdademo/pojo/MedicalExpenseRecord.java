@@ -12,6 +12,7 @@ import java.io.Serializable;
 @Table(name = "PUB01_医疗费用记录")
 public class MedicalExpenseRecord implements Serializable {
 
+	private static final long serialVersionUID = 2940376239353309819L;
 	@Id
 	private String 系统序号;
 	private String 居民健康卡号;
