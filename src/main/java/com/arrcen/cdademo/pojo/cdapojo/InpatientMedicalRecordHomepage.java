@@ -15,6 +15,7 @@ import java.io.Serializable;
 @Table(name = "PUB10_住院病案首页")
 public class InpatientMedicalRecordHomepage implements Serializable {
 
+    private static final long serialVersionUID = -397813765218207392L;
     @Id
     private String 系统序号;
     private String 医疗机构名称;

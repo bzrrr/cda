@@ -15,6 +15,7 @@ import java.io.Serializable;
 @Table(name = "PUB09_病危重通知书")
 public class CriticalIllnessNotice implements Serializable {
 
+    private static final long serialVersionUID = 4958115521226655520L;
     @Id
     private String 系统序号;
     private String 门急诊号;

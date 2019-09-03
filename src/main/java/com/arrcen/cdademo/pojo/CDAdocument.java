@@ -9,6 +9,7 @@ import java.io.Serializable;
 @Table(name = "PUB_CDA共享文档")
 public class CDAdocument implements Serializable {
 
+  private static final long serialVersionUID = 1374624508658429641L;
   @Id
   private String docsId;
   private String root;

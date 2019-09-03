@@ -15,6 +15,7 @@ import java.io.Serializable;
 @Table(name = "PUB13_交接班记录")
 public class HandoverRecord implements Serializable {
 
+    private static final long serialVersionUID = 2625174740384920662L;
     @Id
     private String 系统序号;
     private String 住院号;

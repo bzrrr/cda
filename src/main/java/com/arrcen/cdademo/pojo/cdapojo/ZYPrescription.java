@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import java.io.Serializable;
 
 /**
  * 〈中药处方〉
@@ -13,8 +14,9 @@ import javax.persistence.Transient;
  */
 @Entity
 @Table(name = "PUB03_中药处方")
-public class ZYPrescription {
+public class ZYPrescription implements Serializable {
 
+    private static final long serialVersionUID = -3749116659265514158L;
     @Id
     private String 系统序号;
     private String 医疗机构组织机构代码;

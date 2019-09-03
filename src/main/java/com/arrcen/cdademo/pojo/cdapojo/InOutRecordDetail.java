@@ -15,6 +15,7 @@ import java.io.Serializable;
 @Table(name = "PUB07_出入量记录药物明细")
 public class InOutRecordDetail implements Serializable {
 
+    private static final long serialVersionUID = 930356434778180876L;
     @Id
     private String 系统序号;
     private String 单据序号;

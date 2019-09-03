@@ -15,6 +15,7 @@ import java.io.Serializable;
 @Table(name = "PUB13_会诊记录")
 public class ConsultationRecord implements Serializable {
 
+    private static final long serialVersionUID = 1726341070256342445L;
     @Id
     private String 系统序号;
     private String 电子申请单编号;

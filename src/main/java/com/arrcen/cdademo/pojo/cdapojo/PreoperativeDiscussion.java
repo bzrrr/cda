@@ -15,6 +15,7 @@ import java.io.Serializable;
 @Table(name = "PUB13_术前讨论")
 public class PreoperativeDiscussion implements Serializable {
 
+    private static final long serialVersionUID = 3382637045943377065L;
     @Id
     private String 系统序号;
     private String 住院号;

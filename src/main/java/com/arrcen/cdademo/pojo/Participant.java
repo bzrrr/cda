@@ -9,6 +9,7 @@ import java.io.Serializable;
  * 联系人信息
  */
 public class Participant implements Serializable {
+	private static final long serialVersionUID = -4765962638658636995L;
 	private String state = "";//地址_省
 	private String 地址_市 = "";//地址_市
 	private String county = "";//地址_县

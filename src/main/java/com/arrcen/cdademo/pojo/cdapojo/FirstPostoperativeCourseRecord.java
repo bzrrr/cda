@@ -15,6 +15,7 @@ import java.io.Serializable;
 @Table(name = "PUB13_术后首次病程记录")
 public class FirstPostoperativeCourseRecord implements Serializable {
 
+    private static final long serialVersionUID = -2913152813027601276L;
     @Id
     private String 系统序号;
     private String 住院号;

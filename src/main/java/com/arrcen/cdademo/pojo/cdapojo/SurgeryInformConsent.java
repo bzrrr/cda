@@ -15,6 +15,7 @@ import java.io.Serializable;
 @Table(name = "PUB09_手术同意书")
 public class SurgeryInformConsent implements Serializable {
 
+    private static final long serialVersionUID = -9099532972907512549L;
     @Id
     private String 系统序号;
     private String 门急诊号;

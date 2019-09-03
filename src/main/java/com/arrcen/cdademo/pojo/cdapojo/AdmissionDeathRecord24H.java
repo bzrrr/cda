@@ -15,6 +15,7 @@ import java.io.Serializable;
 @Table(name = "PUB12_24H内入院死亡记录")
 public class AdmissionDeathRecord24H implements Serializable {
 
+    private static final long serialVersionUID = -4282791537429230243L;
     @Id
     private String 系统序号;
     private String 住院号;

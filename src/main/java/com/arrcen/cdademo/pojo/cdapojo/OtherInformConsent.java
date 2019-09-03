@@ -15,6 +15,7 @@ import java.io.Serializable;
 @Table(name = "PUB09_其他知情同意书")
 public class OtherInformConsent implements Serializable {
 
+    private static final long serialVersionUID = -5187460199886924129L;
     @Id
     private String 系统序号;
     private String 门急诊号;

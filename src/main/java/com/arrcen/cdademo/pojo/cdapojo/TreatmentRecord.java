@@ -15,6 +15,7 @@ import java.io.Serializable;
 @Table(name = "PUB05_治疗记录")
 public class TreatmentRecord implements Serializable {
 
+    private static final long serialVersionUID = 1577764897782722710L;
     @Id
     private String 系统序号;
     private String 门急诊号;

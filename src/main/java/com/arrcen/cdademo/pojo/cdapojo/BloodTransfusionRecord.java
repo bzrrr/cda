@@ -15,6 +15,7 @@ import java.io.Serializable;
 @Table(name = "PUB05_输血记录")
 public class BloodTransfusionRecord implements Serializable {
 
+    private static final long serialVersionUID = 8925169426048604847L;
     @Id
     private String 系统序号;
     private String 门急诊号;

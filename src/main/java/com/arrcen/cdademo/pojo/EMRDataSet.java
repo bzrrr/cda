@@ -13,6 +13,7 @@ import java.io.Serializable;
 @Table(name = "PUB_电子病历标准数据集")
 public class EMRDataSet implements Serializable{
 
+  private static final long serialVersionUID = 6758971128993105321L;
   @Id
   private String 系统序号;
   private String 内部标识符;

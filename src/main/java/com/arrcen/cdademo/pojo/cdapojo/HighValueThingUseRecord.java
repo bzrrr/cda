@@ -15,6 +15,7 @@ import java.io.Serializable;
 @Table(name = "PUB07_高值耗材使用记录")
 public class HighValueThingUseRecord implements Serializable {
 
+    private static final long serialVersionUID = -1627157670455651015L;
     @Id
     private String 系统序号;
     private String 住院号;

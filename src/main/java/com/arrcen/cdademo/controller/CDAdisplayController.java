@@ -44,7 +44,7 @@ public class CDAdisplayController {
 			Map<String, Object> map = displayService.getPage(templateIndex, page, size, order, properties, startTime, endTime);
 			return ResponseFormat.retParam(1, map);
 		} catch (Exception e) {
-			log.error(e, log.getName() + "/getList", Level.ERROR);
+			log.error(e, log.getName() + "/getList/templateIndex:" + templateIndex, Level.ERROR);
 			return ResponseFormat.retParam(-1, null);
 		}
 	}
@@ -60,7 +60,7 @@ public class CDAdisplayController {
 			Map map = jsonConvertMap(parse);
 			return ResponseFormat.retParam(1, map);
 		} catch (Exception e) {
-			log.error(e, log.getName() + "/getInfo", Level.ERROR);
+			log.error(e, log.getName() + "/getInfo/docId:" + patientCdaDocument.getDocid(), Level.ERROR);
 			return ResponseFormat.retParam(-1, null);
 		}
 	}
