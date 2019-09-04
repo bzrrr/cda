@@ -28,14 +28,12 @@ public class CDAtemplateServiceImpl implements CDAtemplateService {
 	@Override
 	public String getTemplate(String index) throws Exception {
 		String templateName = "template" + index + ".ftl";
-
-		File file = FileUtil.file("D://cda//templates//" + templateName);
+		File file = FileUtil.file("classpath:templates//" + templateName);
 		FileReader fileReader = new FileReader(file, "UTF-8");
 		String output = fileReader.readString();
 		SAXReader reader = new SAXReader();
 		Document document = reader.read(new ByteArrayInputStream(output.getBytes("UTF-8")));
 		com.alibaba.fastjson.JSONObject obj = XML2jsonUtil.xml2Obj(document.getRootElement());
-
 		obj.put("attrs", "");
 
 		String json = obj.toJSONString();

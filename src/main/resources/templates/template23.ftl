@@ -132,7 +132,7 @@
                                         <wholeOrganization classCode="ORG" determinerCode="INSTANCE">
                                             <id root="2.16.156.10011.1.21" extension=""/>
                                             <name>${admissionEvaluationRecord.病房号!'病房号'}</name>
-                                            <#--病区名称-->
+                                            <!--病区名称-->
                                             <asOrganizationPartOf classCode="PART">
                                                 <wholeOrganization classCode="ORG" determinerCode="INSTANCE">
                                                     <id root="2.16.156.10011.1.27" extension=""/>

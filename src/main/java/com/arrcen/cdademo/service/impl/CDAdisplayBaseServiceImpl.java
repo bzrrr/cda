@@ -83,14 +83,14 @@ public class CDAdisplayBaseServiceImpl implements CDAdisplayService {
 		Sort sort = new Sort(Sort.Direction.fromString(order), properties);
 		Pageable pageable = PageRequest.of(page - 1, size, sort);
 
-		String start = DateUtil.format(DateUtil.parse(startTime), "yyyyMMdd") + " 000000";
-		String end = DateUtil.format(DateUtil.parse(endTime), "yyyyMMdd") + " 235959";
+//		String start = DateUtil.format(DateUtil.parse(startTime), "yyyyMMdd") + " 000000";
+//		String end = DateUtil.format(DateUtil.parse(endTime), "yyyyMMdd") + " 235959";
 
 
 		Specification specification = Specifications.and()
 				.eq(StringUtils.isNotBlank(templateIndex), "templateindex", templateIndex)
-				.gt(StringUtils.isNotBlank(startTime), "effectivetime", start)
-				.lt(StringUtils.isNotBlank(endTime), "effectivetime", end)
+//				.gt(StringUtils.isNotBlank(startTime), "effectivetime", start)
+//				.lt(StringUtils.isNotBlank(endTime), "effectivetime", end)
 				.build();
 
 		Map<String, Object> map = getMapByTemplateIndex(pageable, specification);
