@@ -44,7 +44,7 @@ public class CDAdisplayController {
 			Map<String, Object> map = displayService.getPage(templateIndex, page, size, order, properties, startTime, endTime);
 			return ResponseFormat.retParam(1, map);
 		} catch (Exception e) {
-			log.error(e, log.getName() + "/getList/templateIndex:" + templateIndex, Level.ERROR);
+			log.error(e, log.getName() + "/getList/templateIndex:{}", templateIndex, Level.ERROR);
 			return ResponseFormat.retParam(-1, null);
 		}
 	}
@@ -60,20 +60,20 @@ public class CDAdisplayController {
 			Map map = jsonConvertMap(parse);
 			return ResponseFormat.retParam(1, map);
 		} catch (Exception e) {
-			log.error(e, log.getName() + "/getInfo/docId:" + patientCdaDocument.getDocid(), Level.ERROR);
+			log.error(e, log.getName() + "/getInfo/docid:{}", patientCdaDocument.getDocid(), Level.ERROR);
 			return ResponseFormat.retParam(-1, null);
 		}
 	}
 
 	private Map jsonConvertMap(JSONObject parse) {
 		int count = 0;
-		Map resultMap = Maps.newHashMap();
+		Map<String, Object> resultMap = Maps.newHashMap();
 		for (String key : parse.keySet()) {
 			Object v = parse.get(key);
 			if (v instanceof JSONObject) {
-				List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+				List<Map<String, Object>> list = new ArrayList<>();
 				for (String k : ((JSONObject) v).keySet()) {
-					Map valueMap = Maps.newHashMap();
+					Map<String, Object> valueMap = Maps.newHashMap();
 					if ("系统序号".equals(k)) {
 						continue;
 					} else if ("居民健康卡号".equals(k)) {
@@ -82,8 +82,6 @@ public class CDAdisplayController {
 							valueMap.put("value", ((JSONObject) v).get(k));
 							list.add(valueMap);
 							count++;
-						} else {
-							continue;
 						}
 					} else if ("docId".equals(k)) {
 						valueMap.put("name", "文档流水号");

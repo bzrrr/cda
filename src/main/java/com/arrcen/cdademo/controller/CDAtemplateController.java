@@ -19,7 +19,7 @@ import java.util.List;
 @Api(tags = "CDA文档模板相关接口", description = "提供CDA文档模板相关的api")
 public class CDAtemplateController {
 	@Autowired
-	CDAtemplateServiceImpl templateService;
+	private CDAtemplateServiceImpl templateService;
 
 	private static final Log log = LogFactory.get();
 

@@ -22,7 +22,7 @@ import java.util.Map;
 @Api(tags = "OID管理相关接口", description = "提供OID管理相关的api")
 public class OIDmanagementController {
 	@Autowired
-	OIDmanagementService oiDmanagementService;
+	private OIDmanagementService oiDmanagementService;
 
 	private static final Log log = LogFactory.get();
 

@@ -22,7 +22,7 @@ import java.util.Map;
 @Api(tags = "数据元管理相关接口", description = "提供数据元管理相关的api")
 public class DataSetManagementController {
 	@Autowired
-	DataSetManagementService dataSetManagementService;
+	private DataSetManagementService dataSetManagementService;
 
 	private static final Log log = LogFactory.get();
 

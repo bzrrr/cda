@@ -22,7 +22,7 @@ import java.util.Map;
 @Api(tags = "值域管理相关接口", description = "提供值域管理相关的api")
 public class RangeManagementController {
 	@Autowired
-	RangeManagementService rangeManagementService;
+	private RangeManagementService rangeManagementService;
 
 	private static final Log log = LogFactory.get();
 

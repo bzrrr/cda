@@ -276,7 +276,7 @@ public class CDAgenerateServiceImpl implements CDAgenerateService {
 
 	@Override
 	public void update(String templateIndex, String docInfo) {
-		if ("1".equals(templateIndex)) {
+		if ("01".equals(templateIndex)) {
 			Patient obj = JSONObject.parseObject(docInfo, Patient.class);
 			patientDao.save(obj);
 		}
@@ -284,7 +284,7 @@ public class CDAgenerateServiceImpl implements CDAgenerateService {
 
 	@Override
 	public void insert(String templateIndex, String docInfo) {
-		if ("1".equals(templateIndex)) {
+		if ("01".equals(templateIndex)) {
 			Integer i = patientDao.findMax();
 			int max = i == null ? 0 : i;
 			Patient obj = JSONObject.parseObject(docInfo, Patient.class);
@@ -297,7 +297,7 @@ public class CDAgenerateServiceImpl implements CDAgenerateService {
 
 	@Override
 	public void delele(String templateIndex, List<String> systemIds) {
-		if ("1".equals(templateIndex)) {
+		if ("01".equals(templateIndex)) {
 			for (String systemId : systemIds) {
 				patientDao.deleteById(systemId);
 			}

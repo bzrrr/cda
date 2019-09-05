@@ -28,7 +28,7 @@ import java.util.Map;
 @Api(tags = "CDA文档生成相关接口", description = "提供CDA文档生成相关的api")
 public class CDAgenerateController {
 	@Autowired
-	CDAgenerateService generateService;
+	private CDAgenerateService generateService;
 
 	private static final Log log = LogFactory.get();
 
@@ -37,7 +37,7 @@ public class CDAgenerateController {
 	public GenericResponse getXml(@RequestBody List<DocInfo> docInfos) {
 		try {
 			log.info(log.getName() + "/createPersonalDoc", Level.INFO);
-			List list = Lists.newArrayList();
+			List<String> list = Lists.newArrayList();
 			for (DocInfo docInfo : docInfos) {
 				String xml = generateService.getXml(docInfo.getIndex(), docInfo.getSystemId());
 				list.add(xml);
@@ -73,47 +73,6 @@ public class CDAgenerateController {
 		}
 	}
 
-	/*@PostMapping("/update")
-	@ApiOperation("修改某一条文档信息")
-	public GenericResponse update(@RequestBody @ApiParam(value = "文档信息 json对象", required = true) String docInfo,
-								  @RequestParam(value = "templateIndex") @ApiParam(value = "模板序号", required = true) String templateIndex) {
-		try {
-			log.info(log.getName() + "/update", Level.INFO);
-			generateService.update(templateIndex, docInfo);
-			return ResponseFormat.retParam(1, "修改成功", null);
-		} catch (Exception e) {
-			log.error(e, log.getName() + "/update", Level.ERROR);
-			return ResponseFormat.retParam(-1, null);
-		}
-	}
-
-	@PostMapping("/insert")
-	@ApiOperation("新增一条文档信息")
-	public GenericResponse insert(@RequestBody @ApiParam(value = "文档信息 json对象", required = true) String docInfo,
-								  @RequestParam(value = "templateIndex") @ApiParam(value = "模板序号", required = true) String templateIndex) {
-		try {
-			log.info(log.getName() + "/insert", Level.INFO);
-			generateService.insert(templateIndex, docInfo);
-			return ResponseFormat.retParam(1, "新增成功", null);
-		} catch (Exception e) {
-			log.error(e, log.getName() + "/insert", Level.ERROR);
-			return ResponseFormat.retParam(-1, null);
-		}
-	}
-
-	@PostMapping("/delete")
-	@ApiOperation("删除一或多条文档信息")
-	public GenericResponse delete(@RequestBody @ApiParam(value = "系统序号集合", required = true) List<String> systemIds,
-								  @RequestParam(value = "templateIndex") @ApiParam(value = "模板序号", required = true) String templateIndex) {
-		try {
-			log.info(log.getName() + "/delete", Level.INFO);
-			generateService.delele(templateIndex, systemIds);
-			return ResponseFormat.retParam(1, "删除成功", null);
-		} catch (Exception e) {
-			log.error(e, log.getName() + "/delete", Level.ERROR);
-			return ResponseFormat.retParam(-1, null);
-		}
-	}*/
 
 	@PostMapping("/upload")
 	@ApiOperation(value = "上传文件")
@@ -150,10 +109,12 @@ public class CDAgenerateController {
 			response.flushBuffer();
 			inputStream.close();
 		} catch (Exception e) {
-			log.error(e, log.getName() + "/download", Level.ERROR);
+			log.error(e, log.getName() + "/download/docId:{}", doc.getDocid(), Level.ERROR);
 			response.setStatus(-1);
 		} finally {
-			FileUtil.del(file.toPath());
+			if (file != null) {
+				FileUtil.del(file.toPath());
+			}
 		}
 	}
 
@@ -162,7 +123,7 @@ public class CDAgenerateController {
 	public void downloadFiles(@RequestBody @ApiParam(value = "文件信息", required = true) List<PatientCdaDocument> docs,
 							  HttpServletResponse response) {
 		log.info(log.getName() + "/downloadFiles", Level.INFO);
-		File dir = FileUtil.mkdir("D://cda//" + DateUtil.format(DateUtil.date(),"yyyyMMddHHmmss"));
+		File dir = FileUtil.mkdir("D://cda//" + DateUtil.format(DateUtil.date(), "yyyyMMddHHmmss"));
 		File zip = null;
 		try {
 			for (PatientCdaDocument doc : docs) {
@@ -180,7 +141,9 @@ public class CDAgenerateController {
 			response.setStatus(-1);
 		} finally {
 			FileUtil.del(dir.toPath());
-			FileUtil.del(zip.toPath());
+			if (zip != null) {
+				FileUtil.del(zip.toPath());
+			}
 		}
 	}
 
@@ -191,11 +154,11 @@ public class CDAgenerateController {
 		@ApiModelProperty(value = "用户id")
 		String systemId;
 
-		public String getIndex() {
+		private String getIndex() {
 			return index;
 		}
 
-		public String getSystemId() {
+		private String getSystemId() {
 			return systemId;
 		}
 	}
