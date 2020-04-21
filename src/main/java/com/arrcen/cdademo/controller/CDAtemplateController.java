@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/cda/template")
+@RequestMapping("/api/cda/template")
 @Api(tags = "CDA文档模板相关接口", description = "提供CDA文档模板相关的api")
 public class CDAtemplateController {
 	@Autowired

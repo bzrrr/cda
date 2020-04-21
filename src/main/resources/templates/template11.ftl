@@ -201,17 +201,17 @@
     </component>
 
 
-    <#--<component>
+    <!--<component>
         <section>
             <code code="18610-6" displayName="MEDICATION ADMINISTERED"
                   codeSystem="2.16.840.1.113883.6.1" codeSystemName="LOINC"/>
             <text/>
-            <!-- 过敏史条目 &ndash;&gt;
+            过敏史条目
             <entry>
                 <observation classCode="OBS" moodCode="EVN">
                     <code code="DE02.10.022.00" displayName="过敏史"
                           codeSystem="2.16.156.10011.2.2.1" codeSystemName="卫生信息数据元目录"/>
-                    <value xsi:type="ST">${anesthesiaRecord.麻醉医师签名!'麻醉医师签名'}</value>
+                    <value xsi:type="ST"></value>
                 </observation>
             </entry>
         </section>

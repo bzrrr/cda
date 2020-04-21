@@ -19,6 +19,7 @@ public class SwaggerConfig {
 				.apis(RequestHandlerSelectors.any())
 				.paths(Predicates.not(PathSelectors.regex("/error.*")))// 错误路径不监控
 				.paths(PathSelectors.regex("/.*"))// 对根下所有路径进行监控
+				.paths(PathSelectors.none())//如果是线上环境，添加路径过滤，设置为全部都不符合
 				.build();
 	}
 }

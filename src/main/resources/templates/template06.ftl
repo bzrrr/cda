@@ -96,7 +96,7 @@
         </assignedEntity>
     </authenticator>
 
-   <#-- <!-- 处方调配药剂师签名 &ndash;&gt;
+   <!-- 处方调配药剂师签名 &ndash;&gt;
     <authenticator>
         <time/>
         <signatureCode/>
@@ -104,7 +104,7 @@
             <id root="2.16.156.10011.1.4" extension=""/>
             <code displayName="处方调配药剂师"/>
             <assignedPerson classCode="PSN" determinerCode="INSTANCE">
-                <name>${inspectionRecord.审核医师签名!'审核医师签名'}</name>
+                <name></name>
             </assignedPerson>
         </assignedEntity>
     </authenticator>-->

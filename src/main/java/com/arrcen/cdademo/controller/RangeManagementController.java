@@ -13,13 +13,15 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/cda/range")
+@RequestMapping("/api/cda/range")
 @Api(tags = "值域管理相关接口", description = "提供值域管理相关的api")
+@ApiIgnore
 public class RangeManagementController {
 	@Autowired
 	private RangeManagementService rangeManagementService;

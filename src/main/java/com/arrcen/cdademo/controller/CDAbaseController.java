@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping("/cda")
+@RequestMapping("/api/cda")
 @Api(tags = "CDA模块相关接口", description = "提供CDA模块相关的api")
 public class CDAbaseController {
 	private static final Log log = LogFactory.get();

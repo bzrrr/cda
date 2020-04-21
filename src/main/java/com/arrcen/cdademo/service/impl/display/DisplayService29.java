@@ -58,6 +58,6 @@ public class DisplayService29 extends CDAdisplayBaseServiceImpl {
         specialExamCureConsent.set疾病诊断名称(specialExamCureConsentDao.find疾病诊断名称By疾病诊断编号(specialExamCureConsent.get疾病诊断编码()));
         resultMap.put("特殊检查及特殊治疗同意书",specialExamCureConsent);
 
-        return super.getInfo(patientCdaDocument);
+        return resultMap;
     }
 }

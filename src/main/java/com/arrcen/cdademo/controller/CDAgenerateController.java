@@ -12,11 +12,14 @@ import com.arrcen.cdademo.pojo.ResponseFormat;
 import com.arrcen.cdademo.service.CDAgenerateService;
 import com.google.common.collect.Lists;
 import io.swagger.annotations.*;
+import lombok.Data;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -24,7 +27,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/cda/generate")
+@RequestMapping("/api/cda/generate")
 @Api(tags = "CDA文档生成相关接口", description = "提供CDA文档生成相关的api")
 public class CDAgenerateController {
 	@Autowired
@@ -34,12 +37,17 @@ public class CDAgenerateController {
 
 	@PostMapping("/createPersonalDoc")
 	@ApiOperation("通过模板序号和用户id生成对应的CDA文档")
-	public GenericResponse getXml(@RequestBody List<DocInfo> docInfos) {
+	public GenericResponse getXml(@RequestBody List<DocInfo> docInfos, HttpServletRequest request) {
 		try {
 			log.info(log.getName() + "/createPersonalDoc", Level.INFO);
 			List<String> list = Lists.newArrayList();
 			for (DocInfo docInfo : docInfos) {
-				String xml = generateService.getXml(docInfo.getIndex(), docInfo.getSystemId());
+				String index = docInfo.getIndex();
+				String systemId = docInfo.getSystemId();
+				if (StringUtils.isEmpty(index) || StringUtils.isEmpty(systemId)) {
+					return ResponseFormat.retParam(0, "缺失模板序号/用户id", null);
+				}
+				String xml = generateService.getXml(index, systemId, request);
 				list.add(xml);
 			}
 			return ResponseFormat.retParam(1, list);
@@ -148,18 +156,11 @@ public class CDAgenerateController {
 	}
 
 	@ApiModel
+	@Data
 	static class DocInfo {
 		@ApiModelProperty(value = "模板序号")
 		String index;
 		@ApiModelProperty(value = "用户id")
 		String systemId;
-
-		private String getIndex() {
-			return index;
-		}
-
-		private String getSystemId() {
-			return systemId;
-		}
 	}
 }

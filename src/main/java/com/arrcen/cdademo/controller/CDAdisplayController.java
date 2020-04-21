@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/cda/display")
+@RequestMapping("/api/cda/display")
 @Api(tags = "CDA文档展示相关接口", description = "提供CDA文档展示相关的api")
 public class CDAdisplayController {
 	@Resource(name = "CDAdisplayBaseServiceImpl")

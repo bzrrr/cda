@@ -26,14 +26,14 @@ public class GenerateService01 {
 
     public void addData(Map sourceMap, Patient patient) {
 
-        String patientHealthCardId = patient.get居民健康卡号();
+		String patientHealthCardId = patient.get居民健康卡号();
 		PatientHealthDocInfo patientHealthDocInfo = patientHealthDocInfoDao.findBy居民健康卡号(patientHealthCardId);
-		sourceMap.put("patientHealthDocInfo", patientHealthDocInfo);
+		sourceMap.put("patientHealthDocInfo", patientHealthDocInfo == null ? new PatientHealthDocInfo() : patientHealthDocInfo);
 
 		HealthIncidentInfo healthIncidentInfo = healthIncidentInfoDao.findBy居民健康卡号(patientHealthCardId);
-		sourceMap.put("healthIncidentInfo", healthIncidentInfo);
+		sourceMap.put("healthIncidentInfo", healthIncidentInfo == null ? new HealthIncidentInfo() : healthIncidentInfo);
 
 		MedicalExpenseRecord medicalExpenseRecord = medicalExpenseRecordDao.findBy居民健康卡号(patientHealthCardId);
-		sourceMap.put("medicalExpenseRecord", medicalExpenseRecord);
-    }
+		sourceMap.put("medicalExpenseRecord", medicalExpenseRecord == null ? new MedicalExpenseRecord() : medicalExpenseRecord);
+	}
 }

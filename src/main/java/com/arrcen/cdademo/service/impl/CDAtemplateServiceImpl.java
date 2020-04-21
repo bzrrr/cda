@@ -14,6 +14,7 @@ import org.dom4j.io.OutputFormat;
 import org.dom4j.io.SAXReader;
 import org.dom4j.io.XMLWriter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayInputStream;
@@ -24,12 +25,15 @@ import java.util.List;
 
 @Service
 public class CDAtemplateServiceImpl implements CDAtemplateService {
+	//	private static final String TEMPLATE_PATH = "D://cda//templates//";
+	@Value("${spring.freemarker.template-loader-path}")
+	private String templatePath;
 
 	@Override
 	public String getTemplate(String index) throws Exception {
 		String templateName = "template" + index + ".ftl";
 
-		File file = FileUtil.file("D://cda//templates//" + templateName);
+		File file = FileUtil.file(templatePath + templateName);
 		FileReader fileReader = new FileReader(file, "UTF-8");
 		String output = fileReader.readString();
 		SAXReader reader = new SAXReader();
@@ -84,7 +88,7 @@ public class CDAtemplateServiceImpl implements CDAtemplateService {
 		writer.flush();
 		xml = stringWriter.getBuffer().toString();
 		String templateName = "template" + index + ".ftl";
-		File file = FileUtil.file("D://cda//templates//" + templateName);
+		File file = FileUtil.file(templatePath + templateName);
 		FileWriter fileWriter = new FileWriter(file, "UTF-8");
 		fileWriter.write(xml);
 	}

@@ -18,18 +18,18 @@ public class GenericResponse implements Serializable{
 
 	private static final long serialVersionUID = -9093767692016510561L;
 	@ApiModelProperty("响应状态码")
-	private int code;
+	private int status;
 
 	@ApiModelProperty("提示信息")
 	private String message;
 
 	@ApiModelProperty("响应内容")
-	private Object content;
+	private Object data;
 
 	@Override
 	public String toString() {
-		if(Objects.isNull(this.content)){
-			this.setContent(new Object());
+		if(Objects.isNull(this.data)){
+			this.setData(new Object());
 		}
 		return JSON.toJSONString(this);
 	}

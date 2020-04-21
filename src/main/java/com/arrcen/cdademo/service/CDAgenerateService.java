@@ -3,6 +3,7 @@ package com.arrcen.cdademo.service;
 import com.arrcen.cdademo.pojo.PatientCdaDocument;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -14,10 +15,11 @@ public interface CDAgenerateService {
 	 *
 	 * @param index    模板索引
 	 * @param systemId 用户系统id
+	 * @param request
 	 * @return
 	 * @throws Exception
 	 */
-	String getXml(String index, String systemId) throws Exception;
+	String getXml(String index, String systemId, HttpServletRequest request) throws Exception;
 
 	/**
 	 * 查询分页列表

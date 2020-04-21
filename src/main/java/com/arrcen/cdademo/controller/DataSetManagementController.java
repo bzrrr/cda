@@ -13,13 +13,15 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/cda/dataSet")
+@RequestMapping("/api/cda/dataSet")
 @Api(tags = "数据元管理相关接口", description = "提供数据元管理相关的api")
+@ApiIgnore
 public class DataSetManagementController {
 	@Autowired
 	private DataSetManagementService dataSetManagementService;

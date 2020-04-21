@@ -2,10 +2,18 @@ package com.arrcen.cdademo.service.impl;
 
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.io.FileUtil;
+import cn.hutool.core.io.IORuntimeException;
 import cn.hutool.core.io.file.FileWriter;
 import cn.hutool.core.util.IdUtil;
+import cn.hutool.http.HttpException;
+import cn.hutool.http.HttpRequest;
+import cn.hutool.log.Log;
+import cn.hutool.log.LogFactory;
+import cn.hutool.log.level.Level;
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.arrcen.cdademo.dao.*;
+import com.arrcen.cdademo.feign.FileServerApi;
 import com.arrcen.cdademo.pojo.*;
 import com.arrcen.cdademo.service.CDAgenerateService;
 import com.arrcen.cdademo.service.impl.generate.GenerateService;
@@ -26,19 +34,23 @@ import org.dom4j.io.OutputFormat;
 import org.dom4j.io.SAXReader;
 import org.dom4j.io.XMLWriter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 @Service
 public class CDAgenerateServiceImpl implements CDAgenerateService {
@@ -60,6 +72,16 @@ public class CDAgenerateServiceImpl implements CDAgenerateService {
 	private PatientCdaDocumentDao patientCdaDocumentDao;
 	@Autowired
 	private GenerateService generateService;
+	@Autowired
+	private FileServerApi fileServerApi;
+
+	private static final Log log = LogFactory.get();
+
+	private static final String TEMPLATE_PATH = "D://cda//";
+	//	private static final String TEMPLATE_PATH = "C://platform//cda//";
+//	private static final String TEMPLATE_PATH = "C://";
+	@Value("${upload.platform}")
+	private String platform;
 
 	private static HashBasedTable<Object, Object, Object> templateMap;
 
@@ -96,18 +118,22 @@ public class CDAgenerateServiceImpl implements CDAgenerateService {
 
 	//生成电子病历文档,上传文件至服务器,并返回文档内容的xml以及文档信息
 	@Override
-	public String getXml(String index, String systemId) throws Exception {
+	public String getXml(String index, String systemId, HttpServletRequest request) throws Exception {
 		String docId = IdUtil.randomUUID();
 		String effectiveTime = DateUtil.format(DateUtil.date(), "yyyyMMddHHmmss");
 		Configuration configuration = freeMarkerConfigurer.getConfiguration();
 		//从config对象中获得模板对象。需要制定一个模板文件的名字。
+		String pattern = "[1-9]";
+		if (Pattern.matches(pattern, index)) {
+			index = "0" + index;
+		}
 		String templateName = "template" + index + ".ftl";
 		Template template = configuration.getTemplate(templateName);
 
 		//创建模板需要的数据集。可以是一个map对象也可以是一个pojo，把模板需要的数据都放入数据集。
 		Map sourceMap = new HashMap<>();
 		Patient patient = patientDao.getOne(systemId);
-		packageSourceMap(systemId, sourceMap, docId, effectiveTime, patient,index);
+		packageSourceMap(systemId, sourceMap, docId, effectiveTime, patient, index);
 
 		//创建一个Writer对象，指定生成的文件保存的路径及文件名。
 //		Writer out = new FileWriter(new File("D:\\template.xml"));
@@ -138,10 +164,14 @@ public class CDAgenerateServiceImpl implements CDAgenerateService {
 		out.close();
 
 		String patientName = patient.get患者姓名();
-		String firstLetter = PinYinUtil.getFirstLetter(patientName);
+		String firstLetter = "";
+		if (StringUtils.isNotBlank(patientName)) {
+			firstLetter = PinYinUtil.getFirstLetter(patientName);
+		}
 		String docName = firstLetter + "_" + effectiveTime + "_C00" + index;
 
-		upload(document, index, systemId, docId, effectiveTime, docName);
+		String token = request.getHeader("Authorization");
+		upload(document, index, systemId, docId, effectiveTime, docName, token);
 
 		return document.asXML();
 	}
@@ -201,45 +231,68 @@ public class CDAgenerateServiceImpl implements CDAgenerateService {
 	 * @param document
 	 * @throws IOException
 	 */
-	private void upload(Document document, String index, String systemId, String docId, String effectiveTime, String docName) throws IOException {
-		StringWriter stringWriter = new StringWriter();
-		OutputFormat format = OutputFormat.createPrettyPrint();
-		format.setEncoding("UTF-8"); //设置XML文档的编码类型
-		format.setIndent(true); //设置是否缩进
-		format.setIndent("	"); //缩进方式
-		format.setNewlines(true); //设置是否换行
-		XMLWriter writer = new XMLWriter(stringWriter, format);
-		writer.write(document);
-		writer.flush();
-		String xml = stringWriter.getBuffer().toString();
-		String uploadName = docId + ".xml";
-		File file = FileUtil.touch("D://cda//" + uploadName);
-		FileUtil.writeString(xml, file, "UTF-8");
-		String url = fastDFSClientWrapper.uploadFile(file);
+	private void upload(Document document, String index, String systemId, String docId, String effectiveTime, String docName, String token) throws IOException {
+		StringWriter stringWriter = null;
+		XMLWriter writer = null;
+		File file = null;
+		try {
+			stringWriter = new StringWriter();
+			OutputFormat format = OutputFormat.createPrettyPrint();
+			format.setEncoding("UTF-8"); //设置XML文档的编码类型
+			format.setIndent(true); //设置是否缩进
+			format.setIndent("	"); //缩进方式
+			format.setNewlines(true); //设置是否换行
+			writer = new XMLWriter(stringWriter, format);
+			writer.write(document);
+			writer.flush();
+			String xml = stringWriter.getBuffer().toString();
+//		String uploadName = docId + ".xml";
+			String uploadName = docName + ".xml";
+			file = FileUtil.touch(TEMPLATE_PATH + uploadName);
+			FileUtil.writeString(xml, file, "UTF-8");
+//		String url = fastDFSClientWrapper.uploadFile(file);
 
-		String patientId = patientDao.getOne(systemId).get患者身份证件号码();
+//		FileInputStream fileInputStream = new FileInputStream(file);
+//		MultipartFile multi = new MockMultipartFile(file.getName(), file.getName(), MediaType.MULTIPART_FORM_DATA_VALUE, fileInputStream);
+//		String url = fileServerApi.upload(multi, "cda/", false, null, null, token);
 
-		Integer i = patientCdaDocumentDao.findMax();
-		int max = i == null ? 0 : i;
+			//调用平台接口上传文件
+			String filePath = "clients/042951/tags/cda";
+			String json = HttpRequest.post(platform + "/api/res/upload?filePath=" + filePath + "&isReName=false")
+					.header("Authorization", token)
+					.header("Content-Type", MediaType.MULTIPART_FORM_DATA_VALUE)
+					.form("file", file)
+					.execute().body();
 
-		PatientCdaDocument patientCdaDocument = new PatientCdaDocument();
-		patientCdaDocument.set系统序号(max + 1 + "");
-		patientCdaDocument.setDocid(docId);
-		patientCdaDocument.setDocurl(url);
-		patientCdaDocument.setPatientid(patientId);
-		patientCdaDocument.setTemplateindex(index);
-		patientCdaDocument.setDocname(docName + ".xml");
-		patientCdaDocument.setEffectivetime(effectiveTime);
-		patientCdaDocumentDao.save(patientCdaDocument);
+//		String url = JSON.parseObject(json).getString("data");
+			String url = json;
+			String patientId = patientDao.getOne(systemId).get患者身份证件号码();
 
-		writer.close();
-		stringWriter.close();
-		FileUtil.del(file.toPath());
+			Integer i = patientCdaDocumentDao.findMax();
+			int max = i == null ? 0 : i;
+
+			PatientCdaDocument patientCdaDocument = new PatientCdaDocument();
+			patientCdaDocument.set系统序号(max + 1 + "");
+			patientCdaDocument.setDocid(docId);
+			patientCdaDocument.setDocurl(url);
+			patientCdaDocument.setPatientid(patientId == null ? " " : patientId);
+			patientCdaDocument.setTemplateindex(index);
+			patientCdaDocument.setDocname(docName + ".xml");
+			patientCdaDocument.setEffectivetime(effectiveTime);
+			patientCdaDocumentDao.save(patientCdaDocument);
+		} catch (Exception e) {
+			log.error(e, log.getName() + "/createPersonalDoc", Level.ERROR);
+		} finally {
+			writer.close();
+			stringWriter.close();
+			FileUtil.del(file.toPath());
+		}
 	}
 
 	/**
 	 * 填充模板需要的数据集
-	 *  @param systemId
+	 *
+	 * @param systemId
 	 * @param sourceMap
 	 * @param index
 	 */
@@ -260,17 +313,17 @@ public class CDAgenerateServiceImpl implements CDAgenerateService {
 		String orgName = medicalOrganizationInfoDao.findOrgNameByCode(orgId);
 		sourceMap.put("orgName", orgName);
 
-		generateService.addData(sourceMap,patient,index);
+		generateService.addData(sourceMap, patient, index);
 
 //		String patientHealthCardId = patient.get居民健康卡号();
 //		PatientHealthDocInfo patientHealthDocInfo = patientHealthDocInfoDao.findBy居民健康卡号(patientHealthCardId);
-//		sourceMap.put("patientHealthDocInfo", patientHealthDocInfo);
+//		sourceMap.put("patientHealthDocInfo", patientHealthDocInfo == null ? new PatientHealthDocInfo() : patientHealthDocInfo);
 //
 //		HealthIncidentInfo healthIncidentInfo = healthIncidentInfoDao.findBy居民健康卡号(patientHealthCardId);
-//		sourceMap.put("healthIncidentInfo", healthIncidentInfo);
+//		sourceMap.put("healthIncidentInfo", healthIncidentInfo == null ? new HealthIncidentInfo() : healthIncidentInfo);
 //
 //		MedicalExpenseRecord medicalExpenseRecord = medicalExpenseRecordDao.findBy居民健康卡号(patientHealthCardId);
-//		sourceMap.put("medicalExpenseRecord", medicalExpenseRecord);
+//		sourceMap.put("medicalExpenseRecord", medicalExpenseRecord == null ? new MedicalExpenseRecord() : medicalExpenseRecord);
 	}
 
 
